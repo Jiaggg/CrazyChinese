@@ -12,6 +12,16 @@ class ETextField extends egret.TextField{
         super();
     }
 
+    private _htmlText: string;
+
+    get htmlText(): string {
+        return this._htmlText;
+    }
+    set htmlText(htmlText: string) {
+        this._htmlText = htmlText;
+        var styleParser = new egret.HtmlTextParser();     
+        this.textFlow = styleParser.parser(htmlText);
+    }
     //demo
     //"haa<font size='60' color='0x2bff00' i='true' b='false'>aaaa</font>aaaaaa<i>aaaa</i>aaaaaaaa"
     public setText(str:string = ""):void {

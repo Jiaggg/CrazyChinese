@@ -69,7 +69,7 @@ class StartPanel extends BasePanel{
 
         this.textTF = new ETextField();
         this.textTF.width = 350;
-        this.textTF.setText("我是高级\n<font size='60' color='0x2bff00' i='true' b='false'>ETextField</font>组件<i>请使用</i>");
+        this.textTF.htmlText = "我是高级\n<font size='60' color='0x2bff00' i='true' b='false'>tttttttttt</font>组件<i>请使用</i>";
         this.textTF.x = this.w/2 -this.textTF.width/2;
         this.textTF.y = this.h - 280;
         this.addChild(this.textTF);

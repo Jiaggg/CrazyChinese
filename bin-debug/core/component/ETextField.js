@@ -23,6 +23,18 @@ var ETextField = (function (_super) {
     function ETextField() {
         return _super.call(this) || this;
     }
+    Object.defineProperty(ETextField.prototype, "htmlText", {
+        get: function () {
+            return this._htmlText;
+        },
+        set: function (htmlText) {
+            this._htmlText = htmlText;
+            var styleParser = new egret.HtmlTextParser();
+            this.textFlow = styleParser.parser(htmlText);
+        },
+        enumerable: true,
+        configurable: true
+    });
     //demo
     //"haa<font size='60' color='0x2bff00' i='true' b='false'>aaaa</font>aaaaaa<i>aaaa</i>aaaaaaaa"
     ETextField.prototype.setText = function (str) {

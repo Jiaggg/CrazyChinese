@@ -10,11 +10,12 @@
 	],
 	"game": [
 		"bin-debug/core/views/BasePanel.js",
-		"bin-debug/core/net/SocketManager.js",
+		"bin-debug/view/StartPanel.js",
 		"bin-debug/componentExt/LoadingPanel.js",
 		"bin-debug/componentExt/ShareIconPanel.js",
 		"bin-debug/componentExt/WaitPanel.js",
 		"bin-debug/core/component/AlertPanel.js",
+		"bin-debug/core/component/EBitmap.js",
 		"bin-debug/core/component/EButton.js",
 		"bin-debug/core/component/ETabBar.js",
 		"bin-debug/core/component/ETextField.js",
@@ -27,13 +28,14 @@
 		"bin-debug/core/data/GlobalData.js",
 		"bin-debug/core/data/PropertiesAnalyzer.js",
 		"bin-debug/core/net/Network.js",
-		"bin-debug/Main.js",
+		"bin-debug/core/net/SocketManager.js",
 		"bin-debug/core/notification/MainNotify.js",
 		"bin-debug/core/utils/EffectUtils.js",
 		"bin-debug/core/utils/Global.js",
 		"bin-debug/core/utils/md5.js",
 		"bin-debug/core/utils/NativeApi.js",
 		"bin-debug/core/utils/RegUtils.js",
+		"bin-debug/core/utils/UIEnum.js",
 		"bin-debug/core/utils/UtilsClass/BitmapBlink.js",
 		"bin-debug/core/utils/UtilsClass/LEvent.js",
 		"bin-debug/core/utils/UtilsClass/LListener.js",
@@ -45,6 +47,6 @@
 		"bin-debug/view/GameOverPanel.js",
 		"bin-debug/view/GamePanel.js",
 		"bin-debug/view/SharePanel.js",
-		"bin-debug/view/StartPanel.js"
+		"bin-debug/Main.js"
 	]
 }

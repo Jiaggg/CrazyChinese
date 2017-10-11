@@ -19,12 +19,11 @@ var StartPanel = (function (_super) {
     // private inputTF:egret.TextField;
     // 初始化面板
     StartPanel.prototype.initPanel = function () {
-        this.bg = new egret.Bitmap();
+        this.bg = new EBitmap(this.assets, "bg");
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);
         this.bg.touchEnabled = true;
-        this.logoImg = new egret.Bitmap();
-        this.logoImg.texture = this.assets.getTexture("logoImg");
+        this.logoImg = new EBitmap(this.assets, "logoImg");
         this.logoImg.anchorOffsetX = this.logoImg.width / 2;
         this.logoImg.anchorOffsetY = this.logoImg.height / 2;
         this.logoImg.x = this.w / 2;
@@ -63,7 +62,7 @@ var StartPanel = (function (_super) {
         this.setBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onSetTouchTap, this);
         this.textTF = new ETextField();
         this.textTF.width = 350;
-        this.textTF.setText("我是高级\n<font size='60' color='0x2bff00' i='true' b='false'>ETextField</font>组件<i>请使用</i>");
+        this.textTF.htmlText = "我是高级\n<font size='60' color='0x2bff00' i='true' b='false'>tttttttttt</font>组件<i>请使用</i>";
         this.textTF.x = this.w / 2 - this.textTF.width / 2;
         this.textTF.y = this.h - 280;
         this.addChild(this.textTF);
