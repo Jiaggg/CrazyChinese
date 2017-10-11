@@ -15,6 +15,6 @@ class EBitmap extends egret.Bitmap {
 	}
 
 	private init(assets:egret.SpriteSheet, textureName:string){
-		this.texture = assets.getTexture("bg");
+		this.texture = assets.getTexture(textureName);
 	}
 }
