@@ -1,27 +1,11 @@
 {
 	"groups": [
 		{
-			"keys": "load",
-			"name": "loading"
-		},
-		{
-			"keys": "socialIcon,assets",
+			"keys": "assets",
 			"name": "preload"
 		}
 	],
 	"resources": [
-		{
-			"url": "assets/load.json",
-			"type": "sheet",
-			"name": "load",
-			"subkeys": "pgBar,pgBg"
-		},
-		{
-			"url": "assets/socialIcon.json",
-			"type": "sheet",
-			"name": "socialIcon",
-			"subkeys": "arrow,douban,qq,qqweibo,qqzone,renren,sinaweibo,weixin"
-		},
 		{
 			"url": "assets/assets.json",
 			"type": "sheet",

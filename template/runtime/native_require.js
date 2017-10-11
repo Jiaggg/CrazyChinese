@@ -10,7 +10,7 @@ var game_file_list = [
 	"libs/modules/tween/tween.js",
 	"libs/modules/socket/socket.js",
 	"bin-debug/core/views/BasePanel.js",
-	"bin-debug/view/StartPanel.js",
+	"bin-debug/core/utils/EffectUtils.js",
 	"bin-debug/componentExt/LoadingPanel.js",
 	"bin-debug/componentExt/ShareIconPanel.js",
 	"bin-debug/componentExt/WaitPanel.js",
@@ -30,7 +30,7 @@ var game_file_list = [
 	"bin-debug/core/net/Network.js",
 	"bin-debug/core/net/SocketManager.js",
 	"bin-debug/core/notification/MainNotify.js",
-	"bin-debug/core/utils/EffectUtils.js",
+	"bin-debug/Main.js",
 	"bin-debug/core/utils/Global.js",
 	"bin-debug/core/utils/md5.js",
 	"bin-debug/core/utils/NativeApi.js",
@@ -47,7 +47,10 @@ var game_file_list = [
 	"bin-debug/view/GameOverPanel.js",
 	"bin-debug/view/GamePanel.js",
 	"bin-debug/view/SharePanel.js",
-	"bin-debug/Main.js",
+	"bin-debug/view/CrazyChinese/GameType1Panel.js",
+	"bin-debug/view/CrazyChinese/GameType2Panel.js",
+	"bin-debug/view/CrazyChinese/GameType3Panel.js",
+	"bin-debug/view/CrazyChinese/StartPanel.js",
 	//----auto game_file_list end----
 ];
 

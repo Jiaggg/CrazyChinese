@@ -25,6 +25,22 @@ var MainNotify;
     MainNotify.openStartPanelNotify = "openStartPanelNotify";
     //关闭开始界面
     MainNotify.closeStartPanelNotify = "closeStartPanelNotify";
+    //打开游戏模式界面  
+    MainNotify.openGameTypePanelNotify = "openGameTypePanelNotify";
+    //关闭游戏模式界面
+    MainNotify.closeGameTypePanelNotify = "closeGameTypePanelNotify";
+    //打开静界面  Type1界面
+    MainNotify.openGameType1PanelNotify = "openGameType1PanelNotify";
+    //关闭静界面
+    MainNotify.closeGameType1PanelNotify = "closeGameType1PanelNotify";
+    //打开心界面  Type2界面
+    MainNotify.openGameType2PanelNotify = "openGameType1Pane2Notify";
+    //关闭静界面
+    MainNotify.closeGameType2PanelNotify = "closeGameType2PanelNotify";
+    //打开禅界面  Type3界面
+    MainNotify.openGameType3PanelNotify = "openGameType3PanelNotify";
+    //关闭静界面
+    MainNotify.closeGameType3PanelNotify = "closeGameType3PanelNotify";
     //打开游戏界面
     MainNotify.openGamePanelNotify = "openGamePanelNotify";
     //关闭游戏界面

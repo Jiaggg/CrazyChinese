@@ -26,6 +26,31 @@ module MainNotify {
 	export var openStartPanelNotify:string = "openStartPanelNotify";
 	//关闭开始界面
 	export var closeStartPanelNotify:string = "closeStartPanelNotify";
+
+	//打开游戏模式界面  
+ 	export var openGameTypePanelNotify:string = "openGameTypePanelNotify";
+	//关闭游戏模式界面
+	export var closeGameTypePanelNotify:string = "closeGameTypePanelNotify";
+
+
+	//打开静界面  Type1界面
+ 	export var openGameType1PanelNotify:string = "openGameType1PanelNotify";
+	//关闭静界面
+	export var closeGameType1PanelNotify:string = "closeGameType1PanelNotify";
+
+	//打开心界面  Type2界面
+ 	export var openGameType2PanelNotify:string = "openGameType1Pane2Notify";
+	//关闭静界面
+	export var closeGameType2PanelNotify:string = "closeGameType2PanelNotify";
+
+	//打开禅界面  Type3界面
+ 	export var openGameType3PanelNotify:string = "openGameType3PanelNotify";
+	//关闭静界面
+	export var closeGameType3PanelNotify:string = "closeGameType3PanelNotify";
+
+
+
+
 	//打开游戏界面
 	export var openGamePanelNotify:string = "openGamePanelNotify";
 	//关闭游戏界面
