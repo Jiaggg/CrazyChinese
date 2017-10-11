@@ -15,9 +15,9 @@ module TipsUtils {
         effectTips.size = 24;
         effectTips.y = GameConfig.curHeight()/2;
         if(isWarning){
-            effectTips.textColor = GameConfig.TextColors.red;
+            effectTips.textColor = UIEnum.TextColors.red;
         }else{
-            effectTips.textColor = GameConfig.TextColors.green;
+            effectTips.textColor = UIEnum.TextColors.green;
         }
         effectTips.alpha = 0;
         
@@ -52,9 +52,9 @@ module TipsUtils {
         effectTips.size = 24;
         effectTips.y = GameConfig.curHeight()/2;
         if(isWarning){
-            effectTips.textColor = GameConfig.TextColors.red;
+            effectTips.textColor = UIEnum.TextColors.red;
         }else{
-            effectTips.textColor = GameConfig.TextColors.green;
+            effectTips.textColor = UIEnum.TextColors.green;
         }
         effectTips.alpha = 0;
         
@@ -111,9 +111,9 @@ module TipsUtils {
         effectTips.size = 24;
         effectTips.y = GameConfig.curHeight()/2;
         if(isWarning){
-            effectTips.textColor = GameConfig.TextColors.red;
+            effectTips.textColor = UIEnum.TextColors.red;
         }else{
-            effectTips.textColor = GameConfig.TextColors.green;
+            effectTips.textColor = UIEnum.TextColors.green;
         }
         effectTips.alpha = 0;
         
@@ -152,9 +152,9 @@ module TipsUtils {
         effectTips.size = 24;
         effectTips.y = GameConfig.curHeight()/2;
         if(isWarning){
-            effectTips.textColor = GameConfig.TextColors.red;
+            effectTips.textColor = UIEnum.TextColors.red;
         }else{
-            effectTips.textColor = GameConfig.TextColors.green;
+            effectTips.textColor = UIEnum.TextColors.green;
         }
         effectTips.alpha = 0;
         

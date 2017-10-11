@@ -5,8 +5,8 @@ class StartPanel extends BasePanel{
         super();
     }
 
-    private bg:egret.Bitmap;
-    private logoImg:egret.Bitmap;
+    private bg:EBitmap;
+    private logoImg:EBitmap;
     private setBtn:EButton;
     private helpBtn:EButton;
     private shopBtn:EButton;
@@ -17,13 +17,12 @@ class StartPanel extends BasePanel{
     // private inputTF:egret.TextField;
     // 初始化面板
     public initPanel():void{
-        this.bg = new egret.Bitmap();
+        this.bg = new EBitmap(this.assets, "bg");
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);   
         this.bg.touchEnabled = true;   
 
-        this.logoImg = new egret.Bitmap();
-        this.logoImg.texture = this.assets.getTexture("logoImg");
+        this.logoImg = new EBitmap(this.assets, "logoImg");
         this.logoImg.anchorOffsetX = this.logoImg.width/2;
         this.logoImg.anchorOffsetY = this.logoImg.height/2;
         this.logoImg.x = this.w/2;

@@ -50,10 +50,10 @@ class LoadingPanel extends egret.Sprite {
 
         this.textField = new egret.TextField();
         this.textField.size = 24;
-        this.textField.textColor = 0xFFFFFF;
+        this.textField.textColor = UIEnum.TextColors.white;
         this.textField.bold = true;
         this.textField.stroke = 1;
-        this.textField.strokeColor = 0x000000;
+        this.textField.strokeColor = UIEnum.TextColors.black;
         this.addChild(this.textField);
         this.textField.width = 100;
         this.textField.x = this.w / 2 - this.textField.width / 2;
