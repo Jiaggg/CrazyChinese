@@ -5,7 +5,7 @@
     * textureName ：图集key
     */
 class EBitmap extends egret.Bitmap {
-	public constructor(assets:egret.SpriteSheet, textureName:string) {
+	public constructor(textureName:string, assets:egret.SpriteSheet = null) {
 		super();
 		if(assets == null)
 		{

@@ -32,13 +32,15 @@ var EButton = (function (_super) {
     function EButton(context, imgName, backFun, descStr, fontSize, cartoonType, assetsName) {
         if (backFun === void 0) { backFun = null; }
         if (descStr === void 0) { descStr = ""; }
-        if (fontSize === void 0) { fontSize = 30; }
+        if (fontSize === void 0) { fontSize = UIEnum.FontSize.buttonSize; }
         if (cartoonType === void 0) { cartoonType = 1; }
         if (assetsName === void 0) { assetsName = "assets"; }
         var _this = _super.call(this) || this;
         _this.assets = RES.getRes("assets"); //名称不一样的话需要修改
         _this.isPlayCartoon = false;
         _this.cartoonType = 1;
+        _this.fontSize = UIEnum.FontSize.buttonSize;
+        _this.textAlign = UIEnum.TextAlign.center;
         _this.param = { context: null, data: null }; //回调参数
         _this.param.context = context;
         _this.init(imgName, backFun, descStr, fontSize, cartoonType, assetsName);
@@ -47,29 +49,19 @@ var EButton = (function (_super) {
     EButton.prototype.init = function (imgName, backFun, descStr, fontSize, cartoonType, assetsName) {
         if (backFun === void 0) { backFun = null; }
         if (descStr === void 0) { descStr = ""; }
-        if (fontSize === void 0) { fontSize = 30; }
+        if (fontSize === void 0) { fontSize = UIEnum.FontSize.buttonSize; }
         if (cartoonType === void 0) { cartoonType = 1; }
         if (assetsName === void 0) { assetsName = "assets"; }
         this.cartoonType = cartoonType;
         this.backFun = backFun;
+        this.fontSize = fontSize;
         this.btnImg = new egret.Bitmap();
         if (assetsName != "assets") {
             this.assets = RES.getRes(assetsName);
         }
         this.btnImg.texture = this.assets.getTexture(imgName);
         this.addChild(this.btnImg);
-        if (descStr != "") {
-            this.textField = new egret.TextField();
-            this.addChild(this.textField);
-            this.textField.size = fontSize;
-            this.textField.textAlign = "center";
-            this.textField.stroke = 1;
-            this.textField.strokeColor = 0x000000;
-            this.textField.text = descStr;
-            this.textField.width = this.btnImg.width;
-            this.textField.x = this.btnImg.width / 2 - this.textField.width / 2;
-            this.textField.y = this.btnImg.height / 2 - this.textField.height / 2;
-        }
+        this.initText(descStr);
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
     };
@@ -81,23 +73,25 @@ var EButton = (function (_super) {
         var onComplete2 = function () {
             this.isPlayCartoon = false;
         };
-        var onComplete1 = function () {
-            if (this.cartoonType == 1) {
-                egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 500, egret.Ease.elasticOut).call(onComplete2, this);
-            }
-            else if (this.cartoonType == 2) {
-                egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 500, egret.Ease.backOut).call(onComplete2, this);
-            }
-            else if (this.cartoonType == 3) {
-                egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 100).call(onComplete2, this);
-            }
-        };
-        egret.Tween.get(this).to({ scaleX: 0.5, scaleY: 0.5, x: this.x + this.btnImg.width / 4, y: this.y + this.btnImg.height / 4 }, 100, egret.Ease.sineIn).call(onComplete1, this);
-        egret.setTimeout(function () {
-            if (this.backFun != null) {
-                this.backFun.apply(this.param.context, [this.param.data]);
-            }
-        }, this, 300);
+        if (this.cartoonType > 0) {
+            var onComplete1 = function () {
+                if (this.cartoonType == 1) {
+                    egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 500, egret.Ease.elasticOut).call(onComplete2, this);
+                }
+                else if (this.cartoonType == 2) {
+                    egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 500, egret.Ease.backOut).call(onComplete2, this);
+                }
+                else if (this.cartoonType == 3) {
+                    egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 100).call(onComplete2, this);
+                }
+            };
+            egret.Tween.get(this).to({ scaleX: 0.5, scaleY: 0.5, x: this.x + this.btnImg.width / 4, y: this.y + this.btnImg.height / 4 }, 100, egret.Ease.sineIn).call(onComplete1, this);
+            egret.setTimeout(function () {
+                if (this.backFun != null) {
+                    this.backFun.apply(this.param.context, [this.param.data]);
+                }
+            }, this, 300);
+        }
     };
     //设置绑定数据
     EButton.prototype.setBindData = function (data) {
@@ -109,6 +103,33 @@ var EButton = (function (_super) {
     };
     EButton.prototype.getBitmap = function () {
         return this.btnImg;
+    };
+    Object.defineProperty(EButton.prototype, "text", {
+        get: function () {
+            return this._text;
+        },
+        set: function (text) {
+            this._text = text;
+            this.initText(text);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    EButton.prototype.initText = function (world) {
+        if (world != "") {
+            if (this.textField == null) {
+                this.textField = new ETextField();
+                this.textField.size = this.fontSize;
+                this.textField.textAlign = this.textAlign;
+                this.textField.stroke = 1;
+                this.textField.strokeColor = UIEnum.TextColors.glass;
+                this.textField.width = this.btnImg.width;
+                this.addChild(this.textField);
+            }
+            this.textField.text = world;
+            this.textField.x = this.btnImg.width / 2 - this.textField.width / 2;
+            this.textField.y = this.btnImg.height / 2 - this.textField.height / 2;
+        }
     };
     return EButton;
 }(egret.DisplayObjectContainer));

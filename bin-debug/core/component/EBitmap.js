@@ -19,7 +19,8 @@ var __extends = (this && this.__extends) || (function () {
   */
 var EBitmap = (function (_super) {
     __extends(EBitmap, _super);
-    function EBitmap(assets, textureName) {
+    function EBitmap(textureName, assets) {
+        if (assets === void 0) { assets = null; }
         var _this = _super.call(this) || this;
         if (assets == null) {
             assets = RES.getRes("assets");

@@ -1,6 +1,7 @@
 module UIEnum {
 	// 颜色表
 	export var TextColors = {
+		glass:0x000000,//白色
 		white:0xFFFFFF,//白色
 		milkWhite:0xfbf1af,//乳白色 
 		grayWhite:0xceb6a2,//灰白色
@@ -21,6 +22,13 @@ module UIEnum {
 		littleSize:12,//小型字体大小
 		middleSize:18,//中型字体大小
 		normalSize:24,//正常字体大小
+		buttonSize:30,//正常字体大小
 		bigSize:36//大型字体大小
+	}
+
+	export var TextAlign = {
+		center:"center",
+		left:"left",
+		right:"right"
 	}
 }

@@ -37,9 +37,11 @@ var BasePanel = (function (_super) {
     };
     // 初始化面板数据
     BasePanel.prototype.initData = function () {
+        Global.alert("uuuuuu");
     };
     // 进入面板
     BasePanel.prototype.onEnter = function () {
+        Global.alert("wwwwww");
     };
     // 退出面板
     BasePanel.prototype.onExit = function () {

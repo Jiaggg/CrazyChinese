@@ -2,6 +2,7 @@ var UIEnum;
 (function (UIEnum) {
     // 颜色表
     UIEnum.TextColors = {
+        glass: 0x000000,
         white: 0xFFFFFF,
         milkWhite: 0xfbf1af,
         grayWhite: 0xceb6a2,
@@ -22,7 +23,13 @@ var UIEnum;
         littleSize: 12,
         middleSize: 18,
         normalSize: 24,
+        buttonSize: 30,
         bigSize: 36 //大型字体大小
+    };
+    UIEnum.TextAlign = {
+        center: "center",
+        left: "left",
+        right: "right"
     };
 })(UIEnum || (UIEnum = {}));
 //# sourceMappingURL=UIEnum.js.map

@@ -27,12 +27,12 @@ class BasePanel extends egret.DisplayObjectContainer{
 
     // 初始化面板数据
     public initData():void{
-
+ Global.alert("uuuuuu");
     }
 
     // 进入面板
     public onEnter():void{
-        
+        Global.alert("wwwwww");
     }
 
     // 退出面板
