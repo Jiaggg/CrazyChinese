@@ -14,6 +14,7 @@ var GameConfig;
     //     egret.Profiler.getInstance().run();
     // }
     GameConfig.isDebug = false;
+    GameConfig.panelID = 0;
     //是否在线
     GameConfig.isOnLine = navigator.onLine;
     //是不是微信浏览
@@ -127,6 +128,11 @@ var GameConfig;
         }
     }
     GameConfig.isVertical = isVertical;
+    function getPanelID() {
+        GameConfig.panelID++;
+        return GameConfig.panelID;
+    }
+    GameConfig.getPanelID = getPanelID;
     /**----------------------------------FAQ:-----------------------------*/
     // 横屏解决方法 by 张宇
     // http://bbs.egret-labs.org/thread-529-1-1.html

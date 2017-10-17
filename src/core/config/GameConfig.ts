@@ -14,7 +14,7 @@ module GameConfig {
     //     egret.Profiler.getInstance().run();
     // }
 	export var isDebug:boolean = false;
-
+	export var panelID:number = 0;
 	//是否在线
 	export var isOnLine:boolean = navigator.onLine;
 
@@ -115,6 +115,10 @@ module GameConfig {
 			return true;
 		}
 	} 
+  export function getPanelID():number{
+		GameConfig.panelID ++;
+		return GameConfig.panelID;
+	}
 
     /**----------------------------------FAQ:-----------------------------*/
 

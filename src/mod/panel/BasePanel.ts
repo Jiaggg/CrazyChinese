@@ -10,29 +10,40 @@ class BasePanel extends egret.DisplayObjectContainer{
     public assets:egret.SpriteSheet;
     public w:number = 0;
     public h:number = 0;
-
+    private _panelData:PanelData;
+    get panelData():PanelData{
+        return this._panelData;
+    }
+    set panelData(data:PanelData){
+      let panelID =  this._panelData.panelID;
+      data.panelID = panelID;
+      this._panelData = data;
+    }
+    private _panelID:number;    
+    get panelID():number{
+        return this._panelData.panelID;
+    }
     // 构造函数
     public constructor(assetsName = "assets"){
         super();
         this.assets = RES.getRes(assetsName);
         this.w = GameConfig.curWidth();
         this.h = GameConfig.curHeight();
+        this._panelData = new PanelData();
         this.initPanel();
     }
 
     // 初始化面板
     public initPanel():void{
-
+         PanelManager.addPanel(this);
     }
 
     // 初始化面板数据
     public initData():void{
- Global.alert("uuuuuu");
     }
 
     // 进入面板
     public onEnter():void{
-        Global.alert("wwwwww");
     }
 
     // 退出面板
@@ -42,6 +53,8 @@ class BasePanel extends egret.DisplayObjectContainer{
 
     // 关闭面板
     public closePanel():void{
+        this.panelData = null;
+        this.assets = null;
         PopUpManager.removePopUp(this);
     }    
 
@@ -54,6 +67,5 @@ class BasePanel extends egret.DisplayObjectContainer{
     public getHeight():number{
         return this.height;
     }    
-
 }
 

@@ -21,7 +21,18 @@ var WorldItem = (function (_super) {
         var assetsName = "assets";
         var fontSize = 30;
         var world = "玊";
-        _this = _super.call(this, context, imgName, clickFun, world, fontSize, cartoonType, assetsName) || this;
+        var backFun = function () {
+            this.isPlayCartoon = false;
+            if (this.clickFun != null) {
+                this.clickFun.apply(this.context, [this.param.data]);
+            }
+            // egret.setTimeout(function () {
+            //     if (this.backFun != null) {
+            //         this.backFun.apply(this.param.context, [this.param.data]);
+            //     }
+            // }, this, 300);
+        };
+        _this = _super.call(this, context, imgName, backFun, null, world, fontSize, cartoonType, assetsName) || this;
         _this.initShowImg(rightImg, wrongImg);
         if (isEffect) {
             //TODO 提示特效

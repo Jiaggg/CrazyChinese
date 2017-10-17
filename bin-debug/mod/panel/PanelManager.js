@@ -7,6 +7,8 @@
   */
 var PanelManager;
 (function (PanelManager) {
+    PanelManager.panelList = [];
+    var curPanelID = 0;
     var gameType1 = null;
     var gameType2 = null;
     var gameType3 = null;
@@ -34,12 +36,64 @@ var PanelManager;
         Global.addEventListener(MainNotify.closeGameType3PanelNotify, this.closeGameType3Panel, this);
     }
     PanelManager.initPanel = initPanel;
+    function addPanel(panel) {
+        this.panelList[panel.panelID] = panel;
+        this.openPanelByID(panel.panelID);
+    }
+    PanelManager.addPanel = addPanel;
+    function openPanelByID(panelID) {
+        var oldPanelID = curPanelID;
+        if (oldPanelID != 0 && oldPanelID == panelID)
+            return;
+        var curPanel = PanelManager.panelList[panelID];
+        if (curPanel == null)
+            return;
+        var oldPanel = PanelManager.panelList[oldPanelID];
+        if (oldPanel != null) {
+            switch (oldPanel.panelData.closeType) {
+                case UIEnum.CloseType.cache:
+                    oldPanel.visable = false;
+                    break;
+                case UIEnum.CloseType.close:
+                    oldPanel.closePanel();
+                    break;
+                case UIEnum.CloseType.ignort:
+                    break;
+                default:
+                    oldPanel.closePanel();
+                    break;
+            }
+        }
+        curPanel.visable = true;
+        PopUpManager.addPopUp(curPanel, curPanel.panelData.dark, curPanel.panelData.popUpWidth, curPanel.panelData.popUpHeight, curPanel.panelData.effectType, curPanel.panelData.isAlert);
+    }
+    PanelManager.openPanelByID = openPanelByID;
+    /**
+     * 关闭panel
+     * @panelID:panelID
+     */
+    function closePanelByID(panelID) {
+        var panel = PanelManager.panelList[panelID];
+        if (panel != null) {
+            var panelData = panel.panelData;
+            if (panelData != null) {
+                if (panelData.closeType != UIEnum.CloseType.cache) {
+                    PanelManager.panelList[panelID] = null;
+                    panel.closePanel();
+                }
+                else {
+                    panel.visable = false;
+                }
+            }
+        }
+    }
+    PanelManager.closePanelByID = closePanelByID;
     // 打开模式1界面
     function openGameType1Panel() {
         if (this.gameType1 == null) {
             this.gameType1 = new GameType1Panel();
         }
-        PopUpManager.addPopUp(this.gameType1, false, 0, 0, 0);
+        PopUpManager.addPopUp(this.gameType1, false, 0, 0, 4);
         this.gameType1.updateData();
     }
     PanelManager.openGameType1Panel = openGameType1Panel;
@@ -56,7 +110,7 @@ var PanelManager;
         if (this.gameType2 == null) {
             this.gameType2 = new GameType2Panel();
         }
-        PopUpManager.addPopUp(this.gameType2, false, 0, 0, 0);
+        PopUpManager.addPopUp(this.gameType2, false, 0, 0, 4);
         this.gameType2.updateData();
     }
     PanelManager.openGameType2Panel = openGameType2Panel;
@@ -73,7 +127,7 @@ var PanelManager;
         if (this.gameType3 == null) {
             this.gameType3 = new GameType3Panel();
         }
-        PopUpManager.addPopUp(this.gameType3, false, 0, 0, 0);
+        PopUpManager.addPopUp(this.gameType3, false, 0, 0, 4);
         this.gameType3.updateData();
     }
     PanelManager.openGameType3Panel = openGameType3Panel;
@@ -90,7 +144,8 @@ var PanelManager;
         if (this.startPanel == null) {
             this.startPanel = new StartPanel();
         }
-        this.startPanel.updateData();
+        PanelManager.openPanelByID(this.startPanel.panelID);
+        // this.startPanel.updateData();
         PopUpManager.addPopUp(this.startPanel, false, 0, 0, 0);
     }
     PanelManager.openStartPanel = openStartPanel;

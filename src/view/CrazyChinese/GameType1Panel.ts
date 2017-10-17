@@ -25,7 +25,7 @@ class GameType1Panel extends BasePanel{
         this.addChild(this.bg);   
         this.bg.touchEnabled = false;   
 
-        this.btnBack = new EButton(this,"restart",null,"后退",80,2);
+        this.btnBack = new EButton(this,"restart",null,null,"后退",80,2);
         this.btnBack.x = 10;
         this.btnBack.y = 10;   
         this.addChild(this.btnBack);

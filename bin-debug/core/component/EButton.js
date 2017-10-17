@@ -29,8 +29,9 @@ var EButton = (function (_super) {
     * cartoonType   动画类型 1:【可爱】按下变小，放开弹大 2:按下变小，放开轻微弹大 3：按下变小，放开变大
     * 注意：如果有动画的话，只有动画结束才会触发click事件
     */
-    function EButton(context, imgName, backFun, descStr, fontSize, cartoonType, assetsName) {
+    function EButton(context, imgName, backFun, data, descStr, fontSize, cartoonType, assetsName) {
         if (backFun === void 0) { backFun = null; }
+        if (data === void 0) { data = null; }
         if (descStr === void 0) { descStr = ""; }
         if (fontSize === void 0) { fontSize = UIEnum.FontSize.buttonSize; }
         if (cartoonType === void 0) { cartoonType = 1; }
@@ -43,6 +44,7 @@ var EButton = (function (_super) {
         _this.textAlign = UIEnum.TextAlign.center;
         _this.param = { context: null, data: null }; //回调参数
         _this.param.context = context;
+        _this.param.data = data;
         _this.init(imgName, backFun, descStr, fontSize, cartoonType, assetsName);
         return _this;
     }
@@ -72,25 +74,32 @@ var EButton = (function (_super) {
         this.isPlayCartoon = true;
         var onComplete2 = function () {
             this.isPlayCartoon = false;
+            if (this.backFun != null) {
+                this.backFun.apply(this.param.context, [this.param.data]);
+                this.backFun = null;
+            }
+            // egret.setTimeout(function () {
+            //     if (this.backFun != null) {
+            //         this.backFun.apply(this.param.context, [this.param.data]);
+            //     }
+            // }, this, 300);
         };
         if (this.cartoonType > 0) {
             var onComplete1 = function () {
                 if (this.cartoonType == 1) {
-                    egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 500, egret.Ease.elasticOut).call(onComplete2, this);
+                    egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 200, egret.Ease.elasticOut).call(onComplete2, this);
                 }
                 else if (this.cartoonType == 2) {
-                    egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 500, egret.Ease.backOut).call(onComplete2, this);
+                    egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 200, egret.Ease.backOut).call(onComplete2, this);
                 }
                 else if (this.cartoonType == 3) {
-                    egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 100).call(onComplete2, this);
+                    egret.Tween.get(this).to({ scaleX: 1, scaleY: 1, x: this.x - this.btnImg.width / 4, y: this.y - this.btnImg.height / 4 }, 80).call(onComplete2, this);
                 }
             };
-            egret.Tween.get(this).to({ scaleX: 0.5, scaleY: 0.5, x: this.x + this.btnImg.width / 4, y: this.y + this.btnImg.height / 4 }, 100, egret.Ease.sineIn).call(onComplete1, this);
-            egret.setTimeout(function () {
-                if (this.backFun != null) {
-                    this.backFun.apply(this.param.context, [this.param.data]);
-                }
-            }, this, 300);
+            egret.Tween.get(this).to({ scaleX: 0.5, scaleY: 0.5, x: this.x + this.btnImg.width / 4, y: this.y + this.btnImg.height / 4 }, 80, egret.Ease.sineIn).call(onComplete1, this);
+        }
+        else {
+            onComplete2.apply(null);
         }
     };
     //设置绑定数据

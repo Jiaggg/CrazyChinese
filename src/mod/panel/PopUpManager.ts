@@ -6,7 +6,6 @@
     * 面板弹出的管理类
     */
 module PopUpManager {
-
 	export var darkSprite:egret.Sprite;
 
     /**
@@ -16,12 +15,12 @@ module PopUpManager {
     * popUpWidth      	指定弹窗宽度，定位使用
     * popUpHeight      	指定弹窗高度，定位使用
     * effectType        0：没有动画 1:从中间轻微弹出 2：从中间猛烈弹出  3：从左向右 4：从右向左 5、从上到下 6、从下到上
+	* layer 			层级
     */
-	export function addPopUp(panel, dark:boolean = false, popUpWidth:number = 0,popUpHeight:number = 0,effectType:number = 0,isAlert:boolean = false):void{ 
-		if(GameConfig.gameScene().uiLayer.contains(panel)){//判断是否包含panel
+	export function addPopUp(panel, dark:boolean = false, popUpWidth:number = 0, popUpHeight:number = 0, effectType:number = UIEnum.PanelEffectType.none, isAlert:boolean = false, layer:egret.DisplayObjectContainer = GameConfig.gameScene().uiLayer):void{ 
+		if(layer.contains(panel)){//判断是否包含panel
 			return;
 		}
-
 		if(dark){
 			this.darkSprite = new egret.Sprite();
 	        this.darkSprite.graphics.clear();
@@ -30,8 +29,8 @@ module PopUpManager {
 	        this.darkSprite.graphics.endFill();
 	        this.darkSprite.width = GameConfig.curWidth();
 	        this.darkSprite.height = GameConfig.curHeight();
-	        if(!GameConfig.gameScene().uiLayer.contains(this.darkSprite)){
-				GameConfig.gameScene().uiLayer.addChild( this.darkSprite );
+	        if(!layer.contains(this.darkSprite)){
+				layer.addChild( this.darkSprite );
 	        }
 	        this.darkSprite.touchEnabled = true;
 
@@ -39,7 +38,7 @@ module PopUpManager {
 	        this.darkSprite.visible = true;    
 		}
 
-		GameConfig.gameScene().uiLayer.addChild(panel);
+		layer.addChild(panel);
 		GameConfig.curPanel = panel;
 		if(popUpWidth != 0){
 			panel.x = GameConfig.curWidth()/2 - popUpWidth/2;
@@ -118,12 +117,13 @@ module PopUpManager {
     * 移除面板方法
     * panel       		面板
     * effectType        0：没有动画 1:从中间缩小消失 2：  3：从左向右 4：从右向左 5、从上到下 6、从下到上
+	* layer        层级
     */
-	export function removePopUp(panel,effectType:number = 0):void{ 
+	export function removePopUp(panel,effectType:number = 0, layer:egret.DisplayObjectContainer = GameConfig.gameScene().uiLayer):void{ 
 
         var onComplete:Function = function(){
-	        if(GameConfig.gameScene().uiLayer.contains(this.darkSprite)){
-				GameConfig.gameScene().uiLayer.removeChild( this.darkSprite );
+	        if(layer.contains(this.darkSprite)){
+				layer.removeChild( this.darkSprite );
 	        }
         }; 
         if(this.darkSprite){

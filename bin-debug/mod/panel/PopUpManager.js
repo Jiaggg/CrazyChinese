@@ -14,14 +14,16 @@ var PopUpManager;
     * popUpWidth      	指定弹窗宽度，定位使用
     * popUpHeight      	指定弹窗高度，定位使用
     * effectType        0：没有动画 1:从中间轻微弹出 2：从中间猛烈弹出  3：从左向右 4：从右向左 5、从上到下 6、从下到上
+    * layer 			层级
     */
-    function addPopUp(panel, dark, popUpWidth, popUpHeight, effectType, isAlert) {
+    function addPopUp(panel, dark, popUpWidth, popUpHeight, effectType, isAlert, layer) {
         if (dark === void 0) { dark = false; }
         if (popUpWidth === void 0) { popUpWidth = 0; }
         if (popUpHeight === void 0) { popUpHeight = 0; }
-        if (effectType === void 0) { effectType = 0; }
+        if (effectType === void 0) { effectType = UIEnum.PanelEffectType.none; }
         if (isAlert === void 0) { isAlert = false; }
-        if (GameConfig.gameScene().uiLayer.contains(panel)) {
+        if (layer === void 0) { layer = GameConfig.gameScene().uiLayer; }
+        if (layer.contains(panel)) {
             return;
         }
         if (dark) {
@@ -32,14 +34,14 @@ var PopUpManager;
             this.darkSprite.graphics.endFill();
             this.darkSprite.width = GameConfig.curWidth();
             this.darkSprite.height = GameConfig.curHeight();
-            if (!GameConfig.gameScene().uiLayer.contains(this.darkSprite)) {
-                GameConfig.gameScene().uiLayer.addChild(this.darkSprite);
+            if (!layer.contains(this.darkSprite)) {
+                layer.addChild(this.darkSprite);
             }
             this.darkSprite.touchEnabled = true;
             egret.Tween.get(this.darkSprite).to({ alpha: 1 }, 150);
             this.darkSprite.visible = true;
         }
-        GameConfig.gameScene().uiLayer.addChild(panel);
+        layer.addChild(panel);
         GameConfig.curPanel = panel;
         if (popUpWidth != 0) {
             panel.x = GameConfig.curWidth() / 2 - popUpWidth / 2;
@@ -120,12 +122,14 @@ var PopUpManager;
     * 移除面板方法
     * panel       		面板
     * effectType        0：没有动画 1:从中间缩小消失 2：  3：从左向右 4：从右向左 5、从上到下 6、从下到上
+    * layer        层级
     */
-    function removePopUp(panel, effectType) {
+    function removePopUp(panel, effectType, layer) {
         if (effectType === void 0) { effectType = 0; }
+        if (layer === void 0) { layer = GameConfig.gameScene().uiLayer; }
         var onComplete = function () {
-            if (GameConfig.gameScene().uiLayer.contains(this.darkSprite)) {
-                GameConfig.gameScene().uiLayer.removeChild(this.darkSprite);
+            if (layer.contains(this.darkSprite)) {
+                layer.removeChild(this.darkSprite);
             }
         };
         if (this.darkSprite) {

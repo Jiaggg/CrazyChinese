@@ -27,22 +27,19 @@ var StartPanel = (function (_super) {
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);
         this.bg.touchEnabled = false;
-        this.btnType1 = new EButton(this, "btn_type", null, "静", 80, 2);
+        this.btnType1 = new EButton(this, "btn_type", this.onBtnBack, "btnType1", "静", 80, 2);
         this.btnType1.x = BtnX;
         this.btnType1.y = BtnOffY;
-        this.btnType1.name = "btnType1";
         this.addChild(this.btnType1);
-        this.btnType1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnTypeTouchTap, this);
-        this.btnType2 = new EButton(this, "btn_type", null, "心", 80, 2);
+        // this.btnType1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onBtnTypeTouchTap,this); 
+        this.btnType2 = new EButton(this, "btn_type", this.onBtnBack, "btnType2", "心", 80, 2);
         this.btnType2.x = BtnX;
         this.btnType2.y = BtnOffY + 220;
-        this.btnType2.name = "btnType2";
-        this.addChild(this.btnType2);
+        +this.addChild(this.btnType2);
         this.btnType2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnTypeTouchTap, this);
-        this.btnType3 = new EButton(this, "btn_type", null, "禅", 80, 2);
+        this.btnType3 = new EButton(this, "btn_type", this.onBtnBack, "btnType3", "禅", 80, 2);
         this.btnType3.x = BtnX;
         this.btnType3.y = BtnOffY + 440;
-        this.btnType3.name = "btnType3";
         this.addChild(this.btnType3);
         this.btnType3.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnTypeTouchTap, this);
         // this.logoImg = new egret.Bitmap();
@@ -132,6 +129,21 @@ var StartPanel = (function (_super) {
         Global.dispatchEvent(MainNotify.openGamePanelNotify, null, false);
         Global.dispatchEvent(MainNotify.closeStartPanelNotify, null, false);
     };
+    StartPanel.prototype.onBtnBack = function (data) {
+        var btnName = data.toString();
+        var evntName = MainNotify.openGameType1PanelNotify;
+        if (btnName == "btnType1") {
+            evntName = MainNotify.openGameType1PanelNotify;
+        }
+        else if (btnName == "btnType2") {
+            evntName = MainNotify.openGameType2PanelNotify;
+        }
+        else if (btnName == "btnType3") {
+            evntName = MainNotify.openGameType3PanelNotify;
+        }
+        Global.dispatchEvent(evntName, null, true);
+        Global.dispatchEvent(MainNotify.closeStartPanelNotify, null, false);
+    };
     StartPanel.prototype.onBtnTypeTouchTap = function (e) {
         var btnName = e.target.name;
         var evntName = MainNotify.openGameType1PanelNotify;
@@ -145,7 +157,7 @@ var StartPanel = (function (_super) {
             evntName = MainNotify.openGameType3PanelNotify;
         }
         Global.dispatchEvent(evntName, null, false);
-        Global.dispatchEvent(MainNotify.closeStartPanelNotify, null, false);
+        // Global.dispatchEvent(MainNotify.closeStartPanelNotify,null,false);
     };
     StartPanel.prototype.onHelpTouchTap = function (e) {
         // EffectUtils.rotationEffect(this.helpBtn,1000);

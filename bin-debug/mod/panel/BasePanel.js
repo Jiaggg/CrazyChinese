@@ -29,25 +29,46 @@ var BasePanel = (function (_super) {
         _this.assets = RES.getRes(assetsName);
         _this.w = GameConfig.curWidth();
         _this.h = GameConfig.curHeight();
+        _this._panelData = new PanelData();
         _this.initPanel();
         return _this;
     }
+    Object.defineProperty(BasePanel.prototype, "panelData", {
+        get: function () {
+            return this._panelData;
+        },
+        set: function (data) {
+            var panelID = this._panelData.panelID;
+            data.panelID = panelID;
+            this._panelData = data;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BasePanel.prototype, "panelID", {
+        get: function () {
+            return this._panelData.panelID;
+        },
+        enumerable: true,
+        configurable: true
+    });
     // 初始化面板
     BasePanel.prototype.initPanel = function () {
+        PanelManager.addPanel(this);
     };
     // 初始化面板数据
     BasePanel.prototype.initData = function () {
-        Global.alert("uuuuuu");
     };
     // 进入面板
     BasePanel.prototype.onEnter = function () {
-        Global.alert("wwwwww");
     };
     // 退出面板
     BasePanel.prototype.onExit = function () {
     };
     // 关闭面板
     BasePanel.prototype.closePanel = function () {
+        this.panelData = null;
+        this.assets = null;
         PopUpManager.removePopUp(this);
     };
     // 获取面板宽度

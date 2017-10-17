@@ -1,12 +1,24 @@
 class WorldItem extends EButton 
 {
+	private context:any;
 	public constructor(context: any, clickFun: Function, rightImg:string, wrongImg:string, isEffect:Boolean = false, cartoonType: number = 1)
 	{
 		let imgName:string = "cell_bg";
 		let assetsName: string = "assets";
 		let fontSize: number = 30;
 		let	world: string = "玊";
-		super(context, imgName, clickFun, world, fontSize, cartoonType, assetsName);
+		 var backFun: Function = function () {
+            this.isPlayCartoon = false;
+            if (this.clickFun != null) {
+                    this.clickFun.apply(this.context, [this.param.data]);
+                }
+            // egret.setTimeout(function () {
+            //     if (this.backFun != null) {
+            //         this.backFun.apply(this.param.context, [this.param.data]);
+            //     }
+            // }, this, 300);
+        };
+		super(context, imgName, backFun, null,  world, fontSize, cartoonType, assetsName);
 		this.initShowImg(rightImg, wrongImg);
 		if(isEffect)
 		{

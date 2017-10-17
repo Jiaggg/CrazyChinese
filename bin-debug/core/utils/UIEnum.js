@@ -31,5 +31,29 @@ var UIEnum;
         left: "left",
         right: "right"
     };
+    UIEnum.CloseType = {
+        // 直接关闭
+        close: 1,
+        // 缓存界面
+        cache: 2,
+        // 不关闭
+        ignort: 3
+    };
+    UIEnum.PanelEffectType = {
+        /**没有动画 */
+        none: 0,
+        /**从中间轻微弹出 */
+        center1: 1,
+        /**从中间猛烈弹出 */
+        center2: 2,
+        /**：从左向右 */
+        left_right: 3,
+        /**从右向左 */
+        right_left: 4,
+        /**从上到下  */
+        up_down: 5,
+        /**从下到上 */
+        down_up: 6
+    };
 })(UIEnum || (UIEnum = {}));
 //# sourceMappingURL=UIEnum.js.map
