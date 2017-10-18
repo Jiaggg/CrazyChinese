@@ -24,6 +24,7 @@ class StartPanel extends BasePanel{
     // 初始化面板
     public initPanel():void{
 
+        this.panelData.closeType = UIEnum.CloseType.ignort;
         let BtnX:number = 80;
         let BtnOffY:number = 300;
         this.bg = new egret.Bitmap();
@@ -173,7 +174,7 @@ class StartPanel extends BasePanel{
                 evntName = MainNotify.openGameType3PanelNotify;  
         }
         Global.dispatchEvent(evntName,null,true);
-        Global.dispatchEvent(MainNotify.closeStartPanelNotify,null,false);
+        // Global.dispatchEvent(MainNotify.closeStartPanelNotify,null,false);
     }
 
     public onBtnTypeTouchTap(e:egret.TouchEvent):void{

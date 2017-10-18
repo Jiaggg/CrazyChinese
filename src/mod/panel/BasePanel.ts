@@ -15,9 +15,12 @@ class BasePanel extends egret.DisplayObjectContainer{
         return this._panelData;
     }
     set panelData(data:PanelData){
-      let panelID =  this._panelData.panelID;
-      data.panelID = panelID;
-      this._panelData = data;
+        if(data != null)
+        {
+            let panelID =  this._panelData.panelID;
+            data.panelID = panelID;
+        }
+        this._panelData = data;
     }
     private _panelID:number;    
     get panelID():number{
@@ -35,7 +38,7 @@ class BasePanel extends egret.DisplayObjectContainer{
 
     // 初始化面板
     public initPanel():void{
-         PanelManager.addPanel(this);
+        
     }
 
     // 初始化面板数据

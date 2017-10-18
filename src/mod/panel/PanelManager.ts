@@ -9,12 +9,6 @@ module PanelManager {
 
 	export var panelList = [];
 	var curPanelID = 0;
-
-	var gameType1:GameType1Panel = null;
-	var gameType2:GameType2Panel = null;
-	var gameType3:GameType3Panel = null;
-
-
     var startPanel:StartPanel;
     var gamePanel:GamePanel;
     var gameOverPanel:GameOverPanel;
@@ -28,26 +22,34 @@ module PanelManager {
     	if(_width < _height){
     		GlobalData.initIsVertical = true;
     	}
-
-        Global.addEventListener(MainNotify.openStartPanelNotify,this.openStartPanel,this)
-        Global.addEventListener(MainNotify.closeStartPanelNotify,this.closeStartPanel,this)
-        Global.addEventListener(MainNotify.openGamePanelNotify,this.openGamePanel,this)
-        Global.addEventListener(MainNotify.closeGamePanelNotify,this.closeGamePanel,this)
-        Global.addEventListener(MainNotify.openGameOverPanelNotify,this.openGameOverPanel,this)
-        Global.addEventListener(MainNotify.closeGameOverPanelNotify,this.closeGameOverPanel,this)
-		Global.addEventListener(MainNotify.openGameType1PanelNotify,this.openGameType1Panel,this);
-        Global.addEventListener(MainNotify.closeGameType1PanelNotify,this.closeGameType1Panel,this);
-		Global.addEventListener(MainNotify.openGameType2PanelNotify,this.openGameType2Panel,this);
-        Global.addEventListener(MainNotify.closeGameType2PanelNotify,this.closeGameType2Panel,this);
-		Global.addEventListener(MainNotify.openGameType3PanelNotify,this.openGameType3Panel,this);
-        Global.addEventListener(MainNotify.closeGameType3PanelNotify,this.closeGameType3Panel,this);
+        // Global.addEventListener(MainNotify.openStartPanelNotify,this.openStartPanel,this)
+        // Global.addEventListener(MainNotify.closeStartPanelNotify,this.closeStartPanel,this)
+        // Global.addEventListener(MainNotify.openGamePanelNotify,this.openGamePanel,this)
+        // Global.addEventListener(MainNotify.closeGamePanelNotify,this.closeGamePanel,this)
+        // Global.addEventListener(MainNotify.openGameOverPanelNotify,this.openGameOverPanel,this)
+        // Global.addEventListener(MainNotify.closeGameOverPanelNotify,this.closeGameOverPanel,this)
+		// Global.addEventListener(MainNotify.openGameType1PanelNotify,this.openGameType1Panel,this);
+        // Global.addEventListener(MainNotify.closeGameType1PanelNotify,this.closeGameType1Panel,this);
+		// Global.addEventListener(MainNotify.openGameType2PanelNotify,this.openGameType2Panel,this);
+        // Global.addEventListener(MainNotify.closeGameType2PanelNotify,this.closeGameType2Panel,this);
+		// Global.addEventListener(MainNotify.openGameType3PanelNotify,this.openGameType3Panel,this);
+        // Global.addEventListener(MainNotify.closeGameType3PanelNotify,this.closeGameType3Panel,this);
 
 	} 
 	export function addPanel(panel:any):void
 	{
-		this.panelList[panel.panelID] = panel;
-		this.openPanelByID(panel.panelID);
+		PanelManager.panelList[panel.panelID] = panel;
+		PanelManager.openPanelByID(panel.panelID);
 	}
+
+	export function closePanel(panel:any):void
+	{
+		if(panel != null)
+		{
+			PanelManager.closePanelByID(panel.panelID);
+		}
+	}
+
 
 	export function openPanelByID(panelID:number):void{
 		let oldPanelID:number = curPanelID;
@@ -89,66 +91,44 @@ module PanelManager {
 			let panelData:PanelData = panel.panelData;
 			if(panelData != null)
 			{
-				if(panelData.closeType != UIEnum.CloseType.cache)
+				switch(panelData.closeType)
 				{
-					PanelManager.panelList[panelID] = null;
-					panel.closePanel();
-				}else
-				{
-					panel.visable = false;
+					case UIEnum.CloseType.cache:
+						panel.visable = false;
+						break;
+					case UIEnum.CloseType.ignort:
+						break;
+					case UIEnum.CloseType.close:
+						PanelManager.panelList[panelID] = null;
+						panel.closePanel();
+						break;
+					default:
+						PanelManager.panelList[panelID] = null;
+						panel.closePanel();
+						break;
 				}
 			}
 		}
 	} 
 
 
-	// 打开模式1界面
-	export function openGameType1Panel():void{ 
-		if(this.gameType1 == null){
-			this.gameType1 = new GameType1Panel();
-		}
-		PopUpManager.addPopUp(this.gameType1,false,0,0,4);
-		this.gameType1.updateData();
-	} 
-	// 关闭模式1界面
-	export function closeGameType1Panel():void{ 
-		if(this.gameType1 != null){
-			PopUpManager.removePopUp(this.gameType1,3);
-			this.gameType1 = null;
-		}
-	} 
+	// // 打开模式1界面
+	// export function openGameType1Panel():void{ 
+	// 	if(this.gameType1 == null){
+	// 		this.gameType1 = new GameType1Panel();
+	// 	}
+	// 	addPanel(this.gameType1);
+	// 	// PopUpManager.addPopUp(this.gameType1,false,0,0,4);
+	// 	// this.gameType1.updateData();
+	// } 
+	// // 关闭模式1界面
+	// export function closeGameType1Panel():void{ 
+	// 	if(this.gameType1 != null){
+	// 		PanelManager.closePanel(this.gameType1);
+	// 		this.gameType1 = null;
+	// 	}
+	// } 
 
-	// 打开模式2界面
-	export function openGameType2Panel():void{ 
-		if(this.gameType2 == null){
-			this.gameType2 = new GameType2Panel();
-		}
-		PopUpManager.addPopUp(this.gameType2,false,0,0,4);
-		this.gameType2.updateData();
-	} 
-	// 关闭模式2界面
-	export function closeGameType2Panel():void{ 
-		if(this.gameType2 != null){
-			PopUpManager.removePopUp(this.gameType2,3);
-			this.gameType2 = null;
-		}
-	} 
-
-	// 打开模式3界面
-	export function openGameType3Panel():void{ 
-		if(this.gameType3 == null){
-			this.gameType3 = new GameType3Panel();
-		}
-		PopUpManager.addPopUp(this.gameType3,false,0,0,4);
-		this.gameType3.updateData();
-	} 
-	// 关闭模式3界面
-	export function closeGameType3Panel():void{ 
-		if(this.gameType3 != null){
-			PopUpManager.removePopUp(this.gameType3,3);
-			this.gameType3 = null;
-		}
-	} 
 
 
 	// 打开开始界面
@@ -156,12 +136,12 @@ module PanelManager {
 		if(this.startPanel == null){
 			this.startPanel = new StartPanel();
 		}
-		PanelManager.openPanelByID(this.startPanel.panelID);
+		PanelManager.addPanel(this.startPanel);
 		// this.startPanel.updateData();
-		PopUpManager.addPopUp(this.startPanel,false,0,0,0);
+		// PopUpManager.addPopUp(this.startPanel,false,0,0,0);
 	} 
 	// 关闭开始界面
-	export function closeStartPanel():void{ 
+	export function closeStartPanel():void{ 		
 		if(this.startPanel != null){
 			PopUpManager.removePopUp(this.startPanel,3);
 			this.startPanel = null;
@@ -173,6 +153,8 @@ module PanelManager {
 	// 打开游戏界面
 	export function openGamePanel():void{ 
 		if(this.gamePanel == null){
+
+			
 			this.gamePanel = new GamePanel();
 			PopUpManager.addPopUp(this.gamePanel,false,0,0,3);
 		}

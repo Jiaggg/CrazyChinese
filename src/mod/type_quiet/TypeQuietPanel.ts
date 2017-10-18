@@ -1,4 +1,4 @@
-class GameType1Panel extends BasePanel{
+class TypeQuietPanel extends BasePanel{
     public constructor(){
         super();
     }

@@ -18,6 +18,9 @@ var Main = (function (_super) {
         _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
         return _this;
     }
+    Main.prototype.dispose = function () {
+        // if(this.loadingPanel != null)
+    };
     Main.prototype.onAddToStage = function (event) {
         // egret.Injector.mapClass(RES.AnalyzerBase, RES.PropertiesAnalyzer, RES.PropertiesAnalyzer.TYPE);
         //inject the custom material parser
@@ -36,6 +39,7 @@ var Main = (function (_super) {
     };
     Main.prototype.onResourceLoadComplete = function (event) {
         if (event.groupName == "preload") {
+            this.loadingPanel.dispose();
             PopUpManager.removePopUp(this.loadingPanel);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);

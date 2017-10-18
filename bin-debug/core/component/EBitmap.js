@@ -26,6 +26,7 @@ var EBitmap = (function (_super) {
             assets = RES.getRes("assets");
         }
         _this.init(assets, textureName);
+        ObjectUtils.addObj(_this);
         return _this;
     }
     EBitmap.prototype.init = function (assets, textureName) {

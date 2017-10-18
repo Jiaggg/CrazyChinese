@@ -31,6 +31,7 @@ class EButton extends egret.DisplayObjectContainer {
         this.param.context = context;
         this.param.data = data;
         this.init(imgName, backFun, descStr, fontSize, cartoonType, assetsName);
+        ObjectUtils.addObj(this);
     }
 
     private init(imgName: string, backFun: Function = null, descStr: string = "", fontSize: number = UIEnum.FontSize.buttonSize, cartoonType: number = 1, assetsName: string = "assets"): void {
@@ -45,14 +46,17 @@ class EButton extends egret.DisplayObjectContainer {
         this.addChild(this.btnImg);
         this.initText(descStr);
         this.touchEnabled = true;
-        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
+        if(this.backFun != null)
+        {
+            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
+        }
     }
 
     private onbuttonTouchTap(e): void {
         if (this.isPlayCartoon) {
             return;
         }
-         this.isPlayCartoon = true;
+        this.isPlayCartoon = true;
         var onComplete2: Function = function () {
             this.isPlayCartoon = false;
             if (this.backFun != null) {
@@ -126,5 +130,7 @@ class EButton extends egret.DisplayObjectContainer {
             this.textField.y = this.btnImg.height / 2 - this.textField.height / 2;
         }
     }
+    
+
 }
    

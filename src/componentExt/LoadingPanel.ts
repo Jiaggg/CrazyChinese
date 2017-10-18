@@ -18,6 +18,7 @@ class LoadingPanel extends egret.Sprite {
         super();
         this.mySheet = RES.getRes("load");
         this.createView();
+        ObjectUtils.addObj(this);
     }
 
     private createView(): void {
@@ -31,16 +32,16 @@ class LoadingPanel extends egret.Sprite {
         this.bg.height = this.h;
         this.addChild(this.bg);
         this.touchEnabled = true;
+        ObjectUtils.addObj(this.bg);
 
-        this.pgBg = new egret.Bitmap;
-        this.pgBg.texture = this.mySheet.getTexture("pgBg");
+        this.pgBg = new EBitmap("pgBg", this.mySheet);
         this.pgBg.anchorOffsetX = this.pgBg.width/2;
         this.pgBg.anchorOffsetY = this.pgBg.height/2;
         this.pgBg.x = this.w / 2;
         this.pgBg.y = this.h / 2;
         this.addChild(this.pgBg);
 
-        this.pgBar = new egret.Bitmap;
+        this.pgBar = new EBitmap("pgBar", this.mySheet);
         this.pgBar.texture = this.mySheet.getTexture("pgBar");
         // this.pgBar.anchorOffsetX = this.pgBg.width/2;
         this.pgBar.anchorOffsetY = this.pgBg.height/2;
@@ -48,7 +49,7 @@ class LoadingPanel extends egret.Sprite {
         this.pgBar.y = this.h / 2 + 3;
         this.addChild(this.pgBar);
 
-        this.textField = new egret.TextField();
+        this.textField = new ETextField();
         this.textField.size = 24;
         this.textField.textColor = UIEnum.TextColors.white;
         this.textField.bold = true;
@@ -66,5 +67,10 @@ class LoadingPanel extends egret.Sprite {
         var rate: number = Math.round((current / total) * 100);
         this.textField.text = rate + "%";
         this.pgBar.width = 282 * (current / total);
+    }
+
+    public dispose():void
+    {
+        ObjectUtils.delObj(this);
     }
 }

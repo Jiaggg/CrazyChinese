@@ -19,6 +19,7 @@ var StartPanel = (function (_super) {
     // private inputTF:egret.TextField;
     // 初始化面板
     StartPanel.prototype.initPanel = function () {
+        this.panelData.closeType = UIEnum.CloseType.ignort;
         var BtnX = 80;
         var BtnOffY = 300;
         this.bg = new egret.Bitmap();
@@ -142,7 +143,7 @@ var StartPanel = (function (_super) {
             evntName = MainNotify.openGameType3PanelNotify;
         }
         Global.dispatchEvent(evntName, null, true);
-        Global.dispatchEvent(MainNotify.closeStartPanelNotify, null, false);
+        // Global.dispatchEvent(MainNotify.closeStartPanelNotify,null,false);
     };
     StartPanel.prototype.onBtnTypeTouchTap = function (e) {
         var btnName = e.target.name;

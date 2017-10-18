@@ -5,6 +5,12 @@ class Main extends egret.DisplayObjectContainer {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
+
+    public dispose():void
+    {
+        // if(this.loadingPanel != null)
+
+    }
     
     private onAddToStage(event: egret.Event) {
         // egret.Injector.mapClass(RES.AnalyzerBase, RES.PropertiesAnalyzer, RES.PropertiesAnalyzer.TYPE);
@@ -27,6 +33,7 @@ class Main extends egret.DisplayObjectContainer {
     }
     private onResourceLoadComplete(event: RES.ResourceEvent): void {
         if (event.groupName == "preload") {
+            this.loadingPanel.dispose();
             PopUpManager.removePopUp(this.loadingPanel);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);

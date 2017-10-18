@@ -21,7 +21,9 @@ var __extends = (this && this.__extends) || (function () {
 var ETextField = (function (_super) {
     __extends(ETextField, _super);
     function ETextField() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        ObjectUtils.addObj(_this);
+        return _this;
     }
     Object.defineProperty(ETextField.prototype, "htmlText", {
         get: function () {
@@ -41,6 +43,9 @@ var ETextField = (function (_super) {
         if (str === void 0) { str = ""; }
         var styleParser = new egret.HtmlTextParser();
         this.textFlow = styleParser.parser(str);
+    };
+    ETextField.prototype.delObj = function () {
+        ObjectUtils.delObj(this);
     };
     return ETextField;
 }(egret.TextField));

@@ -11,9 +11,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var GameType1Panel = (function (_super) {
-    __extends(GameType1Panel, _super);
-    function GameType1Panel() {
+var TypeQuietPanel = (function (_super) {
+    __extends(TypeQuietPanel, _super);
+    function TypeQuietPanel() {
         var _this = _super.call(this) || this;
         _this.bg = null;
         _this.btnBack = null;
@@ -30,7 +30,7 @@ var GameType1Panel = (function (_super) {
         return _this;
     }
     // 初始化面板
-    GameType1Panel.prototype.initPanel = function () {
+    TypeQuietPanel.prototype.initPanel = function () {
         this.loadSheet = RES.getRes("load");
         this.bg = new EBitmap("bg_1");
         this.bg.width = GameConfig.curWidth();
@@ -99,7 +99,7 @@ var GameType1Panel = (function (_super) {
         this.txtTime.textAlign = "center";
         this.txtTime.text = "30";
     };
-    GameType1Panel.prototype.updateData = function () {
+    TypeQuietPanel.prototype.updateData = function () {
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
                 var item = new WorldItem(this, null, "cell_bg", "cell_bg", false, 0);
@@ -110,11 +110,11 @@ var GameType1Panel = (function (_super) {
             }
         }
     };
-    GameType1Panel.prototype.onBtnBackTouchTap = function (e) {
+    TypeQuietPanel.prototype.onBtnBackTouchTap = function (e) {
         Global.dispatchEvent(MainNotify.closeGameType1PanelNotify, null, false);
         Global.dispatchEvent(MainNotify.openStartPanelNotify, null, false);
     };
-    return GameType1Panel;
+    return TypeQuietPanel;
 }(BasePanel));
-__reflect(GameType1Panel.prototype, "GameType1Panel");
-//# sourceMappingURL=GameType1Panel.js.map
+__reflect(TypeQuietPanel.prototype, "TypeQuietPanel");
+//# sourceMappingURL=TypeQuietPanel.js.map

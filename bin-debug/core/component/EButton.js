@@ -46,6 +46,7 @@ var EButton = (function (_super) {
         _this.param.context = context;
         _this.param.data = data;
         _this.init(imgName, backFun, descStr, fontSize, cartoonType, assetsName);
+        ObjectUtils.addObj(_this);
         return _this;
     }
     EButton.prototype.init = function (imgName, backFun, descStr, fontSize, cartoonType, assetsName) {
@@ -65,7 +66,9 @@ var EButton = (function (_super) {
         this.addChild(this.btnImg);
         this.initText(descStr);
         this.touchEnabled = true;
-        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
+        if (this.backFun != null) {
+            this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
+        }
     };
     EButton.prototype.onbuttonTouchTap = function (e) {
         if (this.isPlayCartoon) {

@@ -38,8 +38,10 @@ var BasePanel = (function (_super) {
             return this._panelData;
         },
         set: function (data) {
-            var panelID = this._panelData.panelID;
-            data.panelID = panelID;
+            if (data != null) {
+                var panelID = this._panelData.panelID;
+                data.panelID = panelID;
+            }
             this._panelData = data;
         },
         enumerable: true,
@@ -54,7 +56,6 @@ var BasePanel = (function (_super) {
     });
     // 初始化面板
     BasePanel.prototype.initPanel = function () {
-        PanelManager.addPanel(this);
     };
     // 初始化面板数据
     BasePanel.prototype.initData = function () {

@@ -10,6 +10,7 @@ class ETextField extends egret.TextField{
 
     public constructor(){
         super();
+        ObjectUtils.addObj(this);
     }
 
     private _htmlText: string;
@@ -27,6 +28,11 @@ class ETextField extends egret.TextField{
     public setText(str:string = ""):void {
         var styleParser = new egret.HtmlTextParser();     
         this.textFlow = styleParser.parser(str)
+    }
+
+    public delObj():void
+    {
+        ObjectUtils.delObj(this);
     }
 
 }
