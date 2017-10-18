@@ -2,6 +2,7 @@ var ObjectUtils;
 (function (ObjectUtils) {
     ObjectUtils.objs = [];
     ObjectUtils.objID = 0;
+    ObjectUtils.undefinedObjs = [];
     function addObj(obj) {
         if (obj != null && obj != undefined) {
             obj.objid = ObjectUtils.objID;
@@ -20,7 +21,14 @@ var ObjectUtils;
             if (obj.parent != null && obj.parent != undefined) {
                 obj.parent.removeChild(obj);
             }
-            ObjectUtils.objs[obj.objID] = null;
+            //防止未加入对象池报错
+            if (obj.objID != 0 && obj.objID != undefined) {
+                ObjectUtils.objs[obj.objID] = null;
+            }
+            else {
+                //收集未加入对象池的对象
+                ObjectUtils.undefinedObjs.join(obj);
+            }
         }
     }
     ObjectUtils.delObj = delObj;

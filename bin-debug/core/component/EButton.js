@@ -79,13 +79,7 @@ var EButton = (function (_super) {
             this.isPlayCartoon = false;
             if (this.backFun != null) {
                 this.backFun.apply(this.param.context, [this.param.data]);
-                this.backFun = null;
             }
-            // egret.setTimeout(function () {
-            //     if (this.backFun != null) {
-            //         this.backFun.apply(this.param.context, [this.param.data]);
-            //     }
-            // }, this, 300);
         };
         if (this.cartoonType > 0) {
             var onComplete1 = function () {

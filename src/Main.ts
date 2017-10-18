@@ -50,10 +50,14 @@ class Main extends egret.DisplayObjectContainer {
             this.loadingPanel.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     }
-
+    private startPanel:StartPanel = null;
     private createGameScene(): void {
         PanelManager.initPanel();
-        Global.dispatchEvent(MainNotify.openStartPanelNotify, null, false);
+        if(this.startPanel == null)
+        {
+            this.startPanel = new StartPanel();
+        }
+        PanelManager.addPanel(this.startPanel);
     }
 
 }

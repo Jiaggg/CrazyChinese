@@ -31,6 +31,7 @@ var TypeQuietPanel = (function (_super) {
     }
     // 初始化面板
     TypeQuietPanel.prototype.initPanel = function () {
+        // this.panelData.closeType = UIEnum.CloseType.cache;
         this.loadSheet = RES.getRes("load");
         this.bg = new EBitmap("bg_1");
         this.bg.width = GameConfig.curWidth();
@@ -111,8 +112,7 @@ var TypeQuietPanel = (function (_super) {
         }
     };
     TypeQuietPanel.prototype.onBtnBackTouchTap = function (e) {
-        Global.dispatchEvent(MainNotify.closeGameType1PanelNotify, null, false);
-        Global.dispatchEvent(MainNotify.openStartPanelNotify, null, false);
+        PanelManager.closePanel(this);
     };
     return TypeQuietPanel;
 }(BasePanel));

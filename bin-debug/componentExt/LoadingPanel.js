@@ -22,7 +22,7 @@ var LoadingPanel = (function (_super) {
     __extends(LoadingPanel, _super);
     function LoadingPanel() {
         var _this = _super.call(this) || this;
-        _this.bg = new egret.Sprite();
+        _this.bg = null;
         _this.w = 0;
         _this.h = 0;
         _this.mySheet = RES.getRes("load");
@@ -33,6 +33,7 @@ var LoadingPanel = (function (_super) {
     LoadingPanel.prototype.createView = function () {
         this.w = egret.MainContext.instance.stage.stageWidth;
         this.h = egret.MainContext.instance.stage.stageHeight;
+        this.bg = new ESprite();
         this.bg.graphics.beginFill(0x313131, 1);
         this.bg.graphics.drawRect(0, 0, this.w, this.h);
         this.bg.graphics.endFill();
@@ -40,7 +41,6 @@ var LoadingPanel = (function (_super) {
         this.bg.height = this.h;
         this.addChild(this.bg);
         this.touchEnabled = true;
-        ObjectUtils.addObj(this.bg);
         this.pgBg = new EBitmap("pgBg", this.mySheet);
         this.pgBg.anchorOffsetX = this.pgBg.width / 2;
         this.pgBg.anchorOffsetY = this.pgBg.height / 2;

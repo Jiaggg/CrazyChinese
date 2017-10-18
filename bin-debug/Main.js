@@ -15,6 +15,7 @@ var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         var _this = _super.call(this) || this;
+        _this.startPanel = null;
         _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
         return _this;
     }
@@ -58,7 +59,10 @@ var Main = (function (_super) {
     };
     Main.prototype.createGameScene = function () {
         PanelManager.initPanel();
-        Global.dispatchEvent(MainNotify.openStartPanelNotify, null, false);
+        if (this.startPanel == null) {
+            this.startPanel = new StartPanel();
+        }
+        PanelManager.addPanel(this.startPanel);
     };
     return Main;
 }(egret.DisplayObjectContainer));

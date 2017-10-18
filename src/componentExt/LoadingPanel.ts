@@ -8,10 +8,10 @@
 class LoadingPanel extends egret.Sprite {
 
     private mySheet: egret.SpriteSheet;
-    private pgBg: egret.Bitmap;
-    private pgBar: egret.Bitmap;
-    private textField: egret.TextField;
-    private bg: egret.Sprite = new egret.Sprite();
+    private pgBg: EBitmap;
+    private pgBar: EBitmap;
+    private textField: ETextField;
+    private bg: ESprite = null;
     private w: number = 0;
     private h: number = 0;
     constructor() {
@@ -25,6 +25,7 @@ class LoadingPanel extends egret.Sprite {
         this.w = egret.MainContext.instance.stage.stageWidth;
         this.h = egret.MainContext.instance.stage.stageHeight;
 
+        this.bg = new ESprite();
         this.bg.graphics.beginFill(0x313131, 1);
         this.bg.graphics.drawRect(0, 0, this.w, this.h);
         this.bg.graphics.endFill();
@@ -32,7 +33,6 @@ class LoadingPanel extends egret.Sprite {
         this.bg.height = this.h;
         this.addChild(this.bg);
         this.touchEnabled = true;
-        ObjectUtils.addObj(this.bg);
 
         this.pgBg = new EBitmap("pgBg", this.mySheet);
         this.pgBg.anchorOffsetX = this.pgBg.width/2;

@@ -14,7 +14,9 @@ var __extends = (this && this.__extends) || (function () {
 var StartPanel = (function (_super) {
     __extends(StartPanel, _super);
     function StartPanel() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        _this.curPanel = null;
+        return _this;
     }
     // private inputTF:egret.TextField;
     // 初始化面板
@@ -37,12 +39,12 @@ var StartPanel = (function (_super) {
         this.btnType2.x = BtnX;
         this.btnType2.y = BtnOffY + 220;
         +this.addChild(this.btnType2);
-        this.btnType2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnTypeTouchTap, this);
+        // this.btnType2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onBtnTypeTouchTap,this); 
         this.btnType3 = new EButton(this, "btn_type", this.onBtnBack, "btnType3", "禅", 80, 2);
         this.btnType3.x = BtnX;
         this.btnType3.y = BtnOffY + 440;
         this.addChild(this.btnType3);
-        this.btnType3.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnTypeTouchTap, this);
+        // this.btnType3.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onBtnTypeTouchTap,this); 
         // this.logoImg = new egret.Bitmap();
         // this.logoImg.texture = this.assets.getTexture("logoImg");
         // this.logoImg.anchorOffsetX = this.logoImg.width/2;
@@ -131,34 +133,21 @@ var StartPanel = (function (_super) {
         Global.dispatchEvent(MainNotify.closeStartPanelNotify, null, false);
     };
     StartPanel.prototype.onBtnBack = function (data) {
-        var btnName = data.toString();
-        var evntName = MainNotify.openGameType1PanelNotify;
-        if (btnName == "btnType1") {
-            evntName = MainNotify.openGameType1PanelNotify;
+        switch (data.toString()) {
+            case "btnType1":
+                this.curPanel = new TypeQuietPanel();
+                break;
+            case "btnType2":
+                this.curPanel = new TypeQuietPanel();
+                break;
+            case "btnType3":
+                this.curPanel = new TypeQuietPanel();
+                break;
+            default:
+                this.curPanel = new TypeQuietPanel();
+                break;
         }
-        else if (btnName == "btnType2") {
-            evntName = MainNotify.openGameType2PanelNotify;
-        }
-        else if (btnName == "btnType3") {
-            evntName = MainNotify.openGameType3PanelNotify;
-        }
-        Global.dispatchEvent(evntName, null, true);
-        // Global.dispatchEvent(MainNotify.closeStartPanelNotify,null,false);
-    };
-    StartPanel.prototype.onBtnTypeTouchTap = function (e) {
-        var btnName = e.target.name;
-        var evntName = MainNotify.openGameType1PanelNotify;
-        if (btnName == "btnType1") {
-            evntName = MainNotify.openGameType1PanelNotify;
-        }
-        else if (btnName == "btnType2") {
-            evntName = MainNotify.openGameType2PanelNotify;
-        }
-        else if (btnName == "btnType3") {
-            evntName = MainNotify.openGameType3PanelNotify;
-        }
-        Global.dispatchEvent(evntName, null, false);
-        // Global.dispatchEvent(MainNotify.closeStartPanelNotify,null,false);
+        PanelManager.addPanel(this.curPanel);
     };
     StartPanel.prototype.onHelpTouchTap = function (e) {
         // EffectUtils.rotationEffect(this.helpBtn,1000);

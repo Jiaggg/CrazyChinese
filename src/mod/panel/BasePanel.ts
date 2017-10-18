@@ -34,6 +34,7 @@ class BasePanel extends egret.DisplayObjectContainer{
         this.h = GameConfig.curHeight();
         this._panelData = new PanelData();
         this.initPanel();
+        ObjectUtils.addObj(this);
     }
 
     // 初始化面板
@@ -43,6 +44,16 @@ class BasePanel extends egret.DisplayObjectContainer{
 
     // 初始化面板数据
     public initData():void{
+    }
+
+    public initEvent():void
+    {
+
+    }
+
+    public removeEvent():void
+    {
+
     }
 
     // 进入面板
@@ -56,9 +67,11 @@ class BasePanel extends egret.DisplayObjectContainer{
 
     // 关闭面板
     public closePanel():void{
+        this.removeEvent();
         this.panelData = null;
         this.assets = null;
         PopUpManager.removePopUp(this);
+        ObjectUtils.delObj(this);
     }    
 
     // 获取面板宽度
@@ -69,6 +82,11 @@ class BasePanel extends egret.DisplayObjectContainer{
     // 获取面板高度
     public getHeight():number{
         return this.height;
-    }    
+    }   
+
+    public dispose():void
+    {
+        ObjectUtils.delObj(this);
+    } 
 }
 

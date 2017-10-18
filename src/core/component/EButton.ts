@@ -61,13 +61,7 @@ class EButton extends egret.DisplayObjectContainer {
             this.isPlayCartoon = false;
             if (this.backFun != null) {
                     this.backFun.apply(this.param.context, [this.param.data]);
-                    this.backFun = null;
                 }
-            // egret.setTimeout(function () {
-            //     if (this.backFun != null) {
-            //         this.backFun.apply(this.param.context, [this.param.data]);
-            //     }
-            // }, this, 300);
         };
         if(this.cartoonType > 0){
             var onComplete1: Function = function () {
@@ -130,7 +124,7 @@ class EButton extends egret.DisplayObjectContainer {
             this.textField.y = this.btnImg.height / 2 - this.textField.height / 2;
         }
     }
-    
+
 
 }
    

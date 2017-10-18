@@ -18,6 +18,7 @@ class TypeQuietPanel extends BasePanel{
     private worldItems = [];
     // 初始化面板
     public initPanel():void{
+        // this.panelData.closeType = UIEnum.CloseType.cache;
         this.loadSheet = RES.getRes("load");
         this.bg = new EBitmap("bg_1");
         this.bg.width = GameConfig.curWidth();
@@ -110,9 +111,9 @@ class TypeQuietPanel extends BasePanel{
             }
         }
     }
-    public onBtnBackTouchTap(e:egret.TouchEvent):void{
-        Global.dispatchEvent(MainNotify.closeGameType1PanelNotify,null,false);
-        Global.dispatchEvent(MainNotify.openStartPanelNotify,null,false);
+    public onBtnBackTouchTap(e:egret.TouchEvent):void
+    {
+        PanelManager.closePanel(this);
     }
 
 

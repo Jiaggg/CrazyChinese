@@ -111,7 +111,6 @@ module PanelManager {
 		}
 	} 
 
-
 	// // 打开模式1界面
 	// export function openGameType1Panel():void{ 
 	// 	if(this.gameType1 == null){
