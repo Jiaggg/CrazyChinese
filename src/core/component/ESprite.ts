@@ -4,4 +4,9 @@ class ESprite extends egret.Sprite{
 		super();
 		ObjectUtils.addObj(this);
 	}
+
+	public dispose():void
+	{
+		
+	}
 }

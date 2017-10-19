@@ -13,21 +13,25 @@ var ObjectUtils;
     ObjectUtils.addObj = addObj;
     function delObj(obj) {
         if (obj != null && obj != undefined) {
-            if (obj.numChildren > 0) {
-                for (var i = 0; i < obj.numChildren; i++) {
-                    ObjectUtils.delObj(obj.getChildAt(i));
-                }
-            }
-            if (obj.parent != null && obj.parent != undefined) {
-                obj.parent.removeChild(obj);
-            }
-            //防止未加入对象池报错
             if (obj.objID != 0 && obj.objID != undefined) {
                 ObjectUtils.objs[obj.objID] = null;
             }
             else {
                 //收集未加入对象池的对象
-                ObjectUtils.undefinedObjs.join(obj);
+                if (GameConfig.isDebug) {
+                    ObjectUtils.undefinedObjs.unshift([obj]);
+                }
+            }
+            if (obj.numChildren > 0) {
+                for (var i = 0; i < obj.numChildren; i++) {
+                    var child = obj.getChildAt(i);
+                    if (child != null && child != undefined) {
+                        if (child.dispose != null && child.dispose != undefined) {
+                            child.dispose();
+                        }
+                    }
+                    ObjectUtils.delObj(child);
+                }
             }
         }
     }

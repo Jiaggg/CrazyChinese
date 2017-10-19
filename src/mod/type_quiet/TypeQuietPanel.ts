@@ -113,7 +113,7 @@ class TypeQuietPanel extends BasePanel{
     }
     public onBtnBackTouchTap(e:egret.TouchEvent):void
     {
-        PanelManager.closePanel(this);
+        this.closePanel();
     }
 
 

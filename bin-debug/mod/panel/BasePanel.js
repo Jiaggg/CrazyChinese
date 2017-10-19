@@ -31,7 +31,6 @@ var BasePanel = (function (_super) {
         _this.h = GameConfig.curHeight();
         _this._panelData = new PanelData();
         _this.initPanel();
-        ObjectUtils.addObj(_this);
         return _this;
     }
     Object.defineProperty(BasePanel.prototype, "panelData", {
@@ -44,13 +43,6 @@ var BasePanel = (function (_super) {
                 data.panelID = panelID;
             }
             this._panelData = data;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(BasePanel.prototype, "panelID", {
-        get: function () {
-            return this._panelData.panelID;
         },
         enumerable: true,
         configurable: true
@@ -73,11 +65,10 @@ var BasePanel = (function (_super) {
     };
     // 关闭面板
     BasePanel.prototype.closePanel = function () {
-        this.removeEvent();
-        this.panelData = null;
-        this.assets = null;
-        PopUpManager.removePopUp(this);
-        ObjectUtils.delObj(this);
+        PanelManager.closePanel(this);
+    };
+    BasePanel.prototype.showPanel = function () {
+        PanelManager.addPanel(this);
     };
     // 获取面板宽度
     BasePanel.prototype.getWidth = function () {
@@ -86,9 +77,6 @@ var BasePanel = (function (_super) {
     // 获取面板高度
     BasePanel.prototype.getHeight = function () {
         return this.height;
-    };
-    BasePanel.prototype.dispose = function () {
-        ObjectUtils.delObj(this);
     };
     return BasePanel;
 }(egret.DisplayObjectContainer));

@@ -6,7 +6,7 @@
     * 面板弹出的管理类
     */
 module PopUpManager {
-	export var darkSprite:egret.Sprite;
+	export var darkSprite:ESprite;
 
     /**
     * 添加面板方法
@@ -22,7 +22,7 @@ module PopUpManager {
 			return;
 		}
 		if(dark){
-			this.darkSprite = new egret.Sprite();
+			this.darkSprite = new ESprite;
 	        this.darkSprite.graphics.clear();
 	        this.darkSprite.graphics.beginFill(0x000000, 0.3);
 	        this.darkSprite.graphics.drawRect(0, 0, GameConfig.curWidth(), GameConfig.curHeight());

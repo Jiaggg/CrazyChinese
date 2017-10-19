@@ -50,7 +50,6 @@ module PanelManager {
 		}
 	}
 
-
 	export function openPanelByID(panelID:number):void{
 		let oldPanelID:number = curPanelID;
 		if(oldPanelID != 0 && oldPanelID == panelID)
@@ -67,13 +66,13 @@ module PanelManager {
 					oldPanel.visable = false;
 					break;
 				case UIEnum.CloseType.close:
-					oldPanel.closePanel();
+					PanelManager.closePanel(oldPanel);
 					break;
 				case UIEnum.CloseType.ignort:
 					
 					break;
 				default:
-					oldPanel.closePanel();
+					PanelManager.closePanel(oldPanel);
 					break;
 			}
 		}
@@ -100,11 +99,17 @@ module PanelManager {
 						break;
 					case UIEnum.CloseType.close:
 						PanelManager.panelList[panelID] = null;
-						panel.closePanel();
+						panel.panelData = null;
+						panel.assets = null;
+						PopUpManager.removePopUp(panel);
+						ObjectUtils.delObj(panel);
 						break;
 					default:
 						PanelManager.panelList[panelID] = null;
-						panel.closePanel();
+						panel.panelData = null;
+						panel.assets = null;
+						PopUpManager.removePopUp(panel);
+						ObjectUtils.delObj(panel);
 						break;
 				}
 			}

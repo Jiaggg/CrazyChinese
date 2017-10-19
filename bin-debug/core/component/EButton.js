@@ -137,6 +137,13 @@ var EButton = (function (_super) {
             this.textField.y = this.btnImg.height / 2 - this.textField.height / 2;
         }
     };
+    EButton.prototype.dispose = function () {
+        if (this.cartoonType) {
+            egret.Tween.removeTweens(this);
+        }
+        this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
+        this.backFun = null;
+    };
     return EButton;
 }(egret.DisplayObjectContainer));
 __reflect(EButton.prototype, "EButton");

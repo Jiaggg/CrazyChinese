@@ -5,9 +5,9 @@
     * All Rights Reserved. 
     * 加载主游戏资源
     */
-class LoadingPanel extends egret.Sprite {
+class LoadingPanel extends ESprite {
 
-    private mySheet: egret.SpriteSheet;
+    private mySheet: ESpriteSheet;
     private pgBg: EBitmap;
     private pgBar: EBitmap;
     private textField: ETextField;
@@ -18,7 +18,6 @@ class LoadingPanel extends egret.Sprite {
         super();
         this.mySheet = RES.getRes("load");
         this.createView();
-        ObjectUtils.addObj(this);
     }
 
     private createView(): void {
@@ -67,10 +66,5 @@ class LoadingPanel extends egret.Sprite {
         var rate: number = Math.round((current / total) * 100);
         this.textField.text = rate + "%";
         this.pgBar.width = 282 * (current / total);
-    }
-
-    public dispose():void
-    {
-        ObjectUtils.delObj(this);
     }
 }

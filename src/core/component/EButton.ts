@@ -125,6 +125,16 @@ class EButton extends egret.DisplayObjectContainer {
         }
     }
 
+    public dispose():void
+    {
+        if(this.cartoonType)
+        {
+            egret.Tween.removeTweens(this);
+        }
+       this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
+       this.backFun = null
+    } 
+
 
 }
    

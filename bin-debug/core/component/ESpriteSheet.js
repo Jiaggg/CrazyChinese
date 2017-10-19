@@ -11,16 +11,12 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var ESprite = (function (_super) {
-    __extends(ESprite, _super);
-    function ESprite() {
-        var _this = _super.call(this) || this;
-        ObjectUtils.addObj(_this);
-        return _this;
+var ESpriteSheet = (function (_super) {
+    __extends(ESpriteSheet, _super);
+    function ESpriteSheet(texture) {
+        return _super.call(this, texture) || this;
     }
-    ESprite.prototype.dispose = function () {
-    };
-    return ESprite;
-}(egret.Sprite));
-__reflect(ESprite.prototype, "ESprite");
-//# sourceMappingURL=ESprite.js.map
+    return ESpriteSheet;
+}(egret.SpriteSheet));
+__reflect(ESpriteSheet.prototype, "ESpriteSheet");
+//# sourceMappingURL=ESpriteSheet.js.map

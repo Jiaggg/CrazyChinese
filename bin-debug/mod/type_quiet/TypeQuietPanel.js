@@ -112,7 +112,7 @@ var TypeQuietPanel = (function (_super) {
         }
     };
     TypeQuietPanel.prototype.onBtnBackTouchTap = function (e) {
-        PanelManager.closePanel(this);
+        this.closePanel();
     };
     return TypeQuietPanel;
 }(BasePanel));

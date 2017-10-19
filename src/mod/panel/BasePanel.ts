@@ -22,10 +22,6 @@ class BasePanel extends egret.DisplayObjectContainer{
         }
         this._panelData = data;
     }
-    private _panelID:number;    
-    get panelID():number{
-        return this._panelData.panelID;
-    }
     // 构造函数
     public constructor(assetsName = "assets"){
         super();
@@ -34,8 +30,7 @@ class BasePanel extends egret.DisplayObjectContainer{
         this.h = GameConfig.curHeight();
         this._panelData = new PanelData();
         this.initPanel();
-        ObjectUtils.addObj(this);
-    }
+        }
 
     // 初始化面板
     public initPanel():void{
@@ -67,12 +62,13 @@ class BasePanel extends egret.DisplayObjectContainer{
 
     // 关闭面板
     public closePanel():void{
-        this.removeEvent();
-        this.panelData = null;
-        this.assets = null;
-        PopUpManager.removePopUp(this);
-        ObjectUtils.delObj(this);
+         PanelManager.closePanel(this);
     }    
+
+    public showPanel():void
+    {
+        PanelManager.addPanel(this);
+    }
 
     // 获取面板宽度
     public getWidth():number{
@@ -83,10 +79,5 @@ class BasePanel extends egret.DisplayObjectContainer{
     public getHeight():number{
         return this.height;
     }   
-
-    public dispose():void
-    {
-        ObjectUtils.delObj(this);
-    } 
 }
 

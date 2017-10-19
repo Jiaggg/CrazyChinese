@@ -27,7 +27,6 @@ var LoadingPanel = (function (_super) {
         _this.h = 0;
         _this.mySheet = RES.getRes("load");
         _this.createView();
-        ObjectUtils.addObj(_this);
         return _this;
     }
     LoadingPanel.prototype.createView = function () {
@@ -72,10 +71,7 @@ var LoadingPanel = (function (_super) {
         this.textField.text = rate + "%";
         this.pgBar.width = 282 * (current / total);
     };
-    LoadingPanel.prototype.dispose = function () {
-        ObjectUtils.delObj(this);
-    };
     return LoadingPanel;
-}(egret.Sprite));
+}(ESprite));
 __reflect(LoadingPanel.prototype, "LoadingPanel");
 //# sourceMappingURL=LoadingPanel.js.map
