@@ -18,19 +18,20 @@ var TypeQuietPanel = (function (_super) {
         _this.bg = null;
         _this.btnBack = null;
         _this.loadSheet = null;
-        _this.bgWorld = null;
-        _this.txtWorld = null;
+        _this.bgwold = null;
+        _this.txtwold = null;
         _this.bgPinyin = null;
         _this.txtPinyin = null;
         _this.btnPause = null;
         _this.bgTime = null;
         _this.barTime = null;
         _this.txtTime = null;
-        _this.worldItems = [];
+        _this.woldItems = null;
         return _this;
     }
     // 初始化面板
     TypeQuietPanel.prototype.initPanel = function () {
+        this.woldItems = new Array();
         // this.panelData.closeType = UIEnum.CloseType.cache;
         this.loadSheet = RES.getRes("load");
         this.bg = new EBitmap("bg_1");
@@ -43,22 +44,22 @@ var TypeQuietPanel = (function (_super) {
         this.btnBack.y = 10;
         this.addChild(this.btnBack);
         this.btnBack.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnBackTouchTap, this);
-        this.bgWorld = new EBitmap("btn_type");
-        this.bgWorld.x = 100;
-        this.bgWorld.y = 100;
-        this.addChild(this.bgWorld);
-        this.txtWorld = new ETextField();
-        this.txtWorld.size = 110;
-        this.txtWorld.textColor = 0xFFFFFF;
-        this.txtWorld.bold = true;
-        this.txtWorld.stroke = 1;
-        this.txtWorld.strokeColor = 0x000000;
-        this.txtWorld.width = this.bgWorld.width;
-        this.txtWorld.x = this.bgWorld.x;
-        this.txtWorld.y = this.bgWorld.y + 35;
-        this.txtWorld.textAlign = "center";
-        this.txtWorld.text = "玉";
-        this.addChild(this.txtWorld);
+        this.bgwold = new EBitmap("btn_type");
+        this.bgwold.x = 100;
+        this.bgwold.y = 100;
+        this.addChild(this.bgwold);
+        this.txtwold = new ETextField();
+        this.txtwold.size = 110;
+        this.txtwold.textColor = 0xFFFFFF;
+        this.txtwold.bold = true;
+        this.txtwold.stroke = 1;
+        this.txtwold.strokeColor = 0x000000;
+        this.txtwold.width = this.bgwold.width;
+        this.txtwold.x = this.bgwold.x;
+        this.txtwold.y = this.bgwold.y + 35;
+        this.txtwold.textAlign = "center";
+        this.txtwold.text = "玉";
+        this.addChild(this.txtwold);
         this.bgPinyin = new EBitmap("word_spell_bg");
         this.bgPinyin.x = 300;
         this.bgPinyin.y = 180;
@@ -99,20 +100,30 @@ var TypeQuietPanel = (function (_super) {
         this.txtTime.y = this.bgTime.y;
         this.txtTime.textAlign = "center";
         this.txtTime.text = "30";
+        this.updateData();
     };
     TypeQuietPanel.prototype.updateData = function () {
+        for (var item in this.woldItems) {
+            ObjectUtils.delObj(item);
+        }
         for (var i = 0; i < 8; i++) {
             for (var j = 0; j < 8; j++) {
-                var item = new WorldItem(this, null, "cell_bg", "cell_bg", false, 0);
+                var len = this.woldItems.length;
+                var item = new woldItem(this, null, this.onwoldItemClick, len, "cell_bg", "cell_bg", false, 0);
                 item.x = 60 + (item.width + 5) * i;
                 item.y = 400 + (item.height + 5) * j;
                 this.addChild(item);
-                this.worldItems[i] = item;
+                this.woldItems[len] = item;
             }
         }
     };
     TypeQuietPanel.prototype.onBtnBackTouchTap = function (e) {
         this.closePanel();
+    };
+    TypeQuietPanel.prototype.onwoldItemClick = function (index) {
+        var item = this.woldItems[index];
+        if (item != null) {
+        }
     };
     return TypeQuietPanel;
 }(BasePanel));

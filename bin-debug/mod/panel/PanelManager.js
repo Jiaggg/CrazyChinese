@@ -91,14 +91,14 @@ var PanelManager;
                         panel.panelData = null;
                         panel.assets = null;
                         PopUpManager.removePopUp(panel);
-                        // ObjectUtils.delObj(panel);
+                        ObjectUtils.delObj(panel);
                         break;
                     default:
                         PanelManager.panelList[panelID] = null;
                         panel.panelData = null;
                         panel.assets = null;
                         PopUpManager.removePopUp(panel);
-                        // ObjectUtils.delObj(panel);
+                        ObjectUtils.delObj(panel);
                         break;
                 }
             }

@@ -33,6 +33,7 @@ var ObjectUtils;
                     ObjectUtils.delObj(child);
                 }
             }
+            obj = null;
         }
     }
     ObjectUtils.delObj = delObj;

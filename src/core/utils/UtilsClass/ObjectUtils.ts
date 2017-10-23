@@ -45,6 +45,7 @@ module ObjectUtils
 					ObjectUtils.delObj(child);
 				}
 			}
+			obj = null;
 		}
 	}
 }
