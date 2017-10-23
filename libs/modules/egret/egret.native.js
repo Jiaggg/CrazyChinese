@@ -999,31 +999,31 @@ var egret;
             };
             OldNativeCanvasRenderContext.prototype.cacheArrays = function (transform, alpha, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight, textureSourceWidth, textureSourceHeight, meshUVs, meshVertices, meshIndices) {
                 //计算出绘制矩阵，之后把矩阵还原回之前的
-                var locwoldTransform = transform;
-                var originalA = locwoldTransform.a;
-                var originalB = locwoldTransform.b;
-                var originalC = locwoldTransform.c;
-                var originalD = locwoldTransform.d;
-                var originalTx = locwoldTransform.tx;
-                var originalTy = locwoldTransform.ty;
+                var locWorldTransform = transform;
+                var originalA = locWorldTransform.a;
+                var originalB = locWorldTransform.b;
+                var originalC = locWorldTransform.c;
+                var originalD = locWorldTransform.d;
+                var originalTx = locWorldTransform.tx;
+                var originalTy = locWorldTransform.ty;
                 if (destX != 0 || destY != 0) {
-                    locwoldTransform.append(1, 0, 0, 1, destX, destY);
+                    locWorldTransform.append(1, 0, 0, 1, destX, destY);
                 }
                 if (sourceWidth / destWidth != 1 || sourceHeight / destHeight != 1) {
-                    locwoldTransform.append(destWidth / sourceWidth, 0, 0, destHeight / sourceHeight, 0, 0);
+                    locWorldTransform.append(destWidth / sourceWidth, 0, 0, destHeight / sourceHeight, 0, 0);
                 }
-                var a = locwoldTransform.a;
-                var b = locwoldTransform.b;
-                var c = locwoldTransform.c;
-                var d = locwoldTransform.d;
-                var tx = locwoldTransform.tx;
-                var ty = locwoldTransform.ty;
-                locwoldTransform.a = originalA;
-                locwoldTransform.b = originalB;
-                locwoldTransform.c = originalC;
-                locwoldTransform.d = originalD;
-                locwoldTransform.tx = originalTx;
-                locwoldTransform.ty = originalTy;
+                var a = locWorldTransform.a;
+                var b = locWorldTransform.b;
+                var c = locWorldTransform.c;
+                var d = locWorldTransform.d;
+                var tx = locWorldTransform.tx;
+                var ty = locWorldTransform.ty;
+                locWorldTransform.a = originalA;
+                locWorldTransform.b = originalB;
+                locWorldTransform.c = originalC;
+                locWorldTransform.d = originalD;
+                locWorldTransform.tx = originalTx;
+                locWorldTransform.ty = originalTy;
                 if (meshVertices) {
                     // 计算索引位置与赋值
                     var vertices = this.vertices;
@@ -3542,31 +3542,31 @@ var egret;
             };
             NativeCanvasRenderContext.prototype.cacheArrays = function (transform, alpha, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight, textureSourceWidth, textureSourceHeight, meshUVs, meshVertices, meshIndices) {
                 //计算出绘制矩阵，之后把矩阵还原回之前的
-                var locwoldTransform = transform;
-                var originalA = locwoldTransform.a;
-                var originalB = locwoldTransform.b;
-                var originalC = locwoldTransform.c;
-                var originalD = locwoldTransform.d;
-                var originalTx = locwoldTransform.tx;
-                var originalTy = locwoldTransform.ty;
+                var locWorldTransform = transform;
+                var originalA = locWorldTransform.a;
+                var originalB = locWorldTransform.b;
+                var originalC = locWorldTransform.c;
+                var originalD = locWorldTransform.d;
+                var originalTx = locWorldTransform.tx;
+                var originalTy = locWorldTransform.ty;
                 if (destX != 0 || destY != 0) {
-                    locwoldTransform.append(1, 0, 0, 1, destX, destY);
+                    locWorldTransform.append(1, 0, 0, 1, destX, destY);
                 }
                 if (sourceWidth / destWidth != 1 || sourceHeight / destHeight != 1) {
-                    locwoldTransform.append(destWidth / sourceWidth, 0, 0, destHeight / sourceHeight, 0, 0);
+                    locWorldTransform.append(destWidth / sourceWidth, 0, 0, destHeight / sourceHeight, 0, 0);
                 }
-                var a = locwoldTransform.a;
-                var b = locwoldTransform.b;
-                var c = locwoldTransform.c;
-                var d = locwoldTransform.d;
-                var tx = locwoldTransform.tx;
-                var ty = locwoldTransform.ty;
-                locwoldTransform.a = originalA;
-                locwoldTransform.b = originalB;
-                locwoldTransform.c = originalC;
-                locwoldTransform.d = originalD;
-                locwoldTransform.tx = originalTx;
-                locwoldTransform.ty = originalTy;
+                var a = locWorldTransform.a;
+                var b = locWorldTransform.b;
+                var c = locWorldTransform.c;
+                var d = locWorldTransform.d;
+                var tx = locWorldTransform.tx;
+                var ty = locWorldTransform.ty;
+                locWorldTransform.a = originalA;
+                locWorldTransform.b = originalB;
+                locWorldTransform.c = originalC;
+                locWorldTransform.d = originalD;
+                locWorldTransform.tx = originalTx;
+                locWorldTransform.ty = originalTy;
                 if (meshVertices) {
                     // 计算索引位置与赋值
                     var vertices = this.vertices;

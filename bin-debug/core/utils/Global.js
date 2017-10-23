@@ -150,5 +150,42 @@ var Global;
         }
     }
     Global.closeSharePanel = closeSharePanel;
+    function GetRandomNum(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        return (Min + Math.round(Rand * Range));
+    }
+    Global.GetRandomNum = GetRandomNum;
+    /**
+     * 数组随机抽取其中的单元，返回抽取的列表
+     *
+     */
+    function getRandomArray(rdNum, list) {
+        var newList = list.concat();
+        var retList = new Array();
+        if (rdNum > 0 && list.length > rdNum) {
+            var rdItem = void 0;
+            for (var i = 0; i < rdNum; i++) {
+                var index = Math.floor(Math.random() * newList.length);
+                rdItem = newList.splice(index, 1);
+                retList.push(index);
+            }
+        }
+        return retList;
+    }
+    Global.getRandomArray = getRandomArray;
+    function getRandomCount(count, min, max) {
+        var retList = new Array();
+        var ranNum = Global.GetRandomNum(min, max);
+        retList.push(ranNum);
+        count--;
+        if (count <= 0) {
+            return retList;
+        }
+        var offNum = Math.round((count - 1) / 2);
+        retList = retList.concat(Global.getRandomCount(offNum, ranNum + 1, max));
+        retList = retList.concat(Global.getRandomCount(count - offNum - 1, min, ranNum - 1));
+    }
+    Global.getRandomCount = getRandomCount;
 })(Global || (Global = {}));
 //# sourceMappingURL=Global.js.map

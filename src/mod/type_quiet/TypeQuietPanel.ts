@@ -6,8 +6,8 @@ class TypeQuietPanel extends BasePanel{
     private btnBack:EButton = null;
     private loadSheet:egret.SpriteSheet = null;
 
-    private bgwold:egret.Bitmap = null;
-    private txtwold:egret.TextField = null;
+    private bgword:egret.Bitmap = null;
+    private txtword:egret.TextField = null;
     private bgPinyin:egret.Bitmap = null;
     private txtPinyin:egret.TextField = null;
     private btnPause:EButton = null;
@@ -15,10 +15,10 @@ class TypeQuietPanel extends BasePanel{
     private barTime:egret.Bitmap = null;
     private txtTime:egret.TextField = null;
 
-    private woldItems:Array<woldItem> = null;
+    private wordItems:Array<WordItem> = null;
     // 初始化面板
     public initPanel():void{
-        this.woldItems = new Array<woldItem>();
+        this.wordItems = new Array<WordItem>();
 
         // this.panelData.closeType = UIEnum.CloseType.cache;
         this.loadSheet = RES.getRes("load");
@@ -34,23 +34,23 @@ class TypeQuietPanel extends BasePanel{
         this.addChild(this.btnBack);
         this.btnBack.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onBtnBackTouchTap,this); 
 
-        this.bgwold = new EBitmap("btn_type");
-        this.bgwold.x = 100;
-        this.bgwold.y = 100;
-        this.addChild(this.bgwold);   
+        this.bgword = new EBitmap("btn_type");
+        this.bgword.x = 100;
+        this.bgword.y = 100;
+        this.addChild(this.bgword);   
 
-        this.txtwold = new ETextField();
-        this.txtwold.size = 110;
-        this.txtwold.textColor = 0xFFFFFF;
-        this.txtwold.bold = true;
-        this.txtwold.stroke = 1;
-        this.txtwold.strokeColor = 0x000000;
-        this.txtwold.width = this.bgwold.width;
-        this.txtwold.x = this.bgwold.x ;
-        this.txtwold.y =  this.bgwold.y + 35;
-        this.txtwold.textAlign = "center";
-        this.txtwold.text = "玉";
-        this.addChild(this.txtwold);
+        this.txtword = new ETextField();
+        this.txtword.size = 110;
+        this.txtword.textColor = 0xFFFFFF;
+        this.txtword.bold = true;
+        this.txtword.stroke = 1;
+        this.txtword.strokeColor = 0x000000;
+        this.txtword.width = this.bgword.width;
+        this.txtword.x = this.bgword.x ;
+        this.txtword.y =  this.bgword.y + 35;
+        this.txtword.textAlign = "center";
+        this.txtword.text = "玉";
+        this.addChild(this.txtword);
 
         this.bgPinyin = new EBitmap("word_spell_bg");
         this.bgPinyin.x = 300;
@@ -102,34 +102,42 @@ class TypeQuietPanel extends BasePanel{
 
     public  updateData():void
     {
-        for(let item in this.woldItems)
+
+        for(let item in this.wordItems)
         {
             ObjectUtils.delObj(item);
         }
-       for (var i = 0; i < 8; i ++) 
-        {
-             for (var j = 0; j < 8; j ++) 
+        TypeQuietManager.getInstance().setCurLev(1);
+        let randomWords:Array<string> = TypeQuietManager.getInstance().randomWords;
+        let rows:number = TypeQuietManager.getInstance().wordLevData.rows;
+        let columns:number = TypeQuietManager.getInstance().wordLevData.columns;
+        let index:number = 0;
+        for (var i = 0; i < rows; i ++) 
             {
-                let len:number = this.woldItems.length;
-                let item = new woldItem(this, null, this.onwoldItemClick, len, "cell_bg","cell_bg", false, 0);
-                item.x = 60 + (item.width + 5) * i;
-                item.y = 400 + (item.height + 5) * j;
-                this.addChild(item);
-                this.woldItems[len] = item;
+                for (var j = 0; j < columns; j ++) 
+                {
+                    let item = new WordItem(this, this.onwordItemClick, index, "cell_bg","cell_bg", false, 0);
+                    item.x = 60 + (item.width + 5) * i;
+                    item.y = 400 + (item.height + 5) * j;
+                    item.word = randomWords[index];
+                    this.addChild(item);
+                    this.wordItems[index] = item;
+                    index ++ ;
+                }
             }
-        }
     }
     public onBtnBackTouchTap(e:egret.TouchEvent):void
     {
         this.closePanel();
     }
 
-    public onwoldItemClick(index:number):void
+    public onwordItemClick(index:number):void
     {
-        let item:woldItem = this.woldItems[index];
+        let item:WordItem = this.wordItems[index];
+        let isRight:boolean = TypeQuietManager.getInstance().checkIsRight(index);
         if(item != null)
         {
-
+            item.isRight = isRight;
         }
     }
 

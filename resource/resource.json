@@ -5,7 +5,7 @@
 			"name": "loading"
 		},
 		{
-			"keys": "socialIcon,assets",
+			"keys": "socialIcon,assets,jsontpl_json",
 			"name": "preload"
 		}
 	],
@@ -26,7 +26,12 @@
 			"url": "assets/assets.json",
 			"type": "sheet",
 			"name": "assets",
-			"subkeys": "acceptBtn,alertBg,bg,bg2,btn_type,cancelBtn,continueBtn,fbBtn,fontImg,helpBtn,loadingCircle1,loadingCircle2,logoImg,menueBtn,musicBtn,nextBtn,panelBg,pauseBtn,rankBtn,retryBtn,setBtn,shareBtn,shopBtn,soundBtn,starImg,startBtn,switchBar,switchOff,switchOn,tipsBg,titleBg"
+			"subkeys": "acceptBtn,alertBg,arcade_bg,bg,bg2,bg_1,bg_2,bg_3,btn_ok,btn_type,cancelBtn,cell_bg,close,continueBtn,fbBtn,fontImg,gold,helpBtn,icon,img_pause_f,loadingCircle1,loadingCircle2,logoImg,memory_bg,menueBtn,musicBtn,nextBtn,panelBg,pause,pauseBtn,point_bg,rankBtn,restart,restart_by_gold,retryBtn,setBtn,shareBtn,shopBtn,soundBtn,starImg,start,startBtn,switchBar,switchOff,switchOn,tipsBg,tips_bg,titleBg,word_spell_bg,zen_bg"
+		},
+		{
+			"url": "jsontpl/jsontpl.json",
+			"type": "json",
+			"name": "jsontpl_json"
 		}
 	]
 }

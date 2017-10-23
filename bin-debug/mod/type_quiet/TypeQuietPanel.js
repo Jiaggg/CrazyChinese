@@ -18,20 +18,20 @@ var TypeQuietPanel = (function (_super) {
         _this.bg = null;
         _this.btnBack = null;
         _this.loadSheet = null;
-        _this.bgwold = null;
-        _this.txtwold = null;
+        _this.bgword = null;
+        _this.txtword = null;
         _this.bgPinyin = null;
         _this.txtPinyin = null;
         _this.btnPause = null;
         _this.bgTime = null;
         _this.barTime = null;
         _this.txtTime = null;
-        _this.woldItems = null;
+        _this.wordItems = null;
         return _this;
     }
     // 初始化面板
     TypeQuietPanel.prototype.initPanel = function () {
-        this.woldItems = new Array();
+        this.wordItems = new Array();
         // this.panelData.closeType = UIEnum.CloseType.cache;
         this.loadSheet = RES.getRes("load");
         this.bg = new EBitmap("bg_1");
@@ -44,22 +44,22 @@ var TypeQuietPanel = (function (_super) {
         this.btnBack.y = 10;
         this.addChild(this.btnBack);
         this.btnBack.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnBackTouchTap, this);
-        this.bgwold = new EBitmap("btn_type");
-        this.bgwold.x = 100;
-        this.bgwold.y = 100;
-        this.addChild(this.bgwold);
-        this.txtwold = new ETextField();
-        this.txtwold.size = 110;
-        this.txtwold.textColor = 0xFFFFFF;
-        this.txtwold.bold = true;
-        this.txtwold.stroke = 1;
-        this.txtwold.strokeColor = 0x000000;
-        this.txtwold.width = this.bgwold.width;
-        this.txtwold.x = this.bgwold.x;
-        this.txtwold.y = this.bgwold.y + 35;
-        this.txtwold.textAlign = "center";
-        this.txtwold.text = "玉";
-        this.addChild(this.txtwold);
+        this.bgword = new EBitmap("btn_type");
+        this.bgword.x = 100;
+        this.bgword.y = 100;
+        this.addChild(this.bgword);
+        this.txtword = new ETextField();
+        this.txtword.size = 110;
+        this.txtword.textColor = 0xFFFFFF;
+        this.txtword.bold = true;
+        this.txtword.stroke = 1;
+        this.txtword.strokeColor = 0x000000;
+        this.txtword.width = this.bgword.width;
+        this.txtword.x = this.bgword.x;
+        this.txtword.y = this.bgword.y + 35;
+        this.txtword.textAlign = "center";
+        this.txtword.text = "玉";
+        this.addChild(this.txtword);
         this.bgPinyin = new EBitmap("word_spell_bg");
         this.bgPinyin.x = 300;
         this.bgPinyin.y = 180;
@@ -103,26 +103,34 @@ var TypeQuietPanel = (function (_super) {
         this.updateData();
     };
     TypeQuietPanel.prototype.updateData = function () {
-        for (var item in this.woldItems) {
+        for (var item in this.wordItems) {
             ObjectUtils.delObj(item);
         }
-        for (var i = 0; i < 8; i++) {
-            for (var j = 0; j < 8; j++) {
-                var len = this.woldItems.length;
-                var item = new woldItem(this, null, this.onwoldItemClick, len, "cell_bg", "cell_bg", false, 0);
+        TypeQuietManager.getInstance().setCurLev(1);
+        var randomWords = TypeQuietManager.getInstance().randomWords;
+        var rows = TypeQuietManager.getInstance().wordLevData.rows;
+        var columns = TypeQuietManager.getInstance().wordLevData.columns;
+        var index = 0;
+        for (var i = 0; i < rows; i++) {
+            for (var j = 0; j < columns; j++) {
+                var item = new WordItem(this, this.onwordItemClick, index, "cell_bg", "cell_bg", false, 0);
                 item.x = 60 + (item.width + 5) * i;
                 item.y = 400 + (item.height + 5) * j;
+                item.word = randomWords[index];
                 this.addChild(item);
-                this.woldItems[len] = item;
+                this.wordItems[index] = item;
+                index++;
             }
         }
     };
     TypeQuietPanel.prototype.onBtnBackTouchTap = function (e) {
         this.closePanel();
     };
-    TypeQuietPanel.prototype.onwoldItemClick = function (index) {
-        var item = this.woldItems[index];
+    TypeQuietPanel.prototype.onwordItemClick = function (index) {
+        var item = this.wordItems[index];
+        var isRight = TypeQuietManager.getInstance().checkIsRight(index);
         if (item != null) {
+            item.isRight = isRight;
         }
     };
     return TypeQuietPanel;

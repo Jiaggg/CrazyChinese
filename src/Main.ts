@@ -11,6 +11,11 @@ class Main extends egret.DisplayObjectContainer {
         // if(this.loadingPanel != null)
 
     }
+
+    private initData() {
+        DataTemplateManager.getInstance();
+    }
+
     
     private onAddToStage(event: egret.Event) {
         // egret.Injector.mapClass(RES.AnalyzerBase, RES.PropertiesAnalyzer, RES.PropertiesAnalyzer.TYPE);
@@ -53,6 +58,8 @@ class Main extends egret.DisplayObjectContainer {
     private startPanel:StartPanel = null;
     private createGameScene(): void {
         PanelManager.initPanel();
+        this.initData();
+        
         if(this.startPanel == null)
         {
             this.startPanel = new StartPanel();

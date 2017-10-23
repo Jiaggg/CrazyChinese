@@ -105,9 +105,9 @@ class EButton extends egret.DisplayObjectContainer {
         this.initText(text)
     }
 
-    private initText(wold:string):void
+    private initText(word:string):void
     {
-        if (wold != "") 
+        if (word != "") 
         {
             if( this.textField == null)
             {
@@ -119,7 +119,7 @@ class EButton extends egret.DisplayObjectContainer {
                 this.textField.width = this.btnImg.width;
                 this.addChild(this.textField);
             }
-            this.textField.text = wold;
+            this.textField.text = word;
             this.textField.x = this.btnImg.width / 2 - this.textField.width / 2;
             this.textField.y = this.btnImg.height / 2 - this.textField.height / 2;
         }

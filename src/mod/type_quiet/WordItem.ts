@@ -1,19 +1,19 @@
-class woldItem extends EButton 
+class WordItem extends EButton 
 {
 	private context:any;
 	
-	public constructor(context: any, data:woldItemData, clickFun: Function, param:any, rightImg:string, wrongImg:string, isEffect:Boolean = false, cartoonType: number = 1)
+	public constructor(context: any, clickFun: Function, param:any, rightImg:string, wrongImg:string, isEffect:Boolean = false, cartoonType: number = 1)
 	{
 		let imgName:string = "cell_bg";
 		let assetsName: string = "assets";
 		let fontSize: number = 30;
-		let	wold: string = "玊";
+		let	word: string = "玊";
 		 var backFun: Function = function () {
             if (clickFun != null) {
                     clickFun.apply(context, [param]);
                 }
         };
-		super(context, imgName, backFun, param,  wold, fontSize, cartoonType, assetsName);
+		super(context, imgName, backFun, param,  word, fontSize, cartoonType, assetsName);
 		this.initShowImg(rightImg, wrongImg);
 		if(isEffect)
 		{
@@ -21,27 +21,17 @@ class woldItem extends EButton
 		}
 
 	}
-	private _itemData:woldItemData;
-	get itemData():woldItemData
-	{
-		return this._itemData;
-	}
-
-	set itemData(data:woldItemData)
-	{
-		this._itemData = data;
-	}
 
 	private imgWrong:EBitmap;
 	private imgRight:EBitmap;
 
-    private _wold: string; 
-	get wold(): string {
-        return this._wold;
+    private _word: string; 
+	get word(): string {
+        return this._word;
     }
-    set wold(wold: string) {
-        this._wold = wold;
-		this.text = wold;
+    set word(word: string) {
+        this._word = word;
+		this.text = word;
     }
 
 	private _isRight:boolean;

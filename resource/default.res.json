@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "assets",
+			"keys": "assets,jsontpl_json",
 			"name": "preload"
 		}
 	],
@@ -11,6 +11,11 @@
 			"type": "sheet",
 			"name": "assets",
 			"subkeys": "acceptBtn,alertBg,bg,bg2,btn_type,cancelBtn,continueBtn,fbBtn,fontImg,helpBtn,loadingCircle1,loadingCircle2,logoImg,menueBtn,musicBtn,nextBtn,panelBg,pauseBtn,rankBtn,retryBtn,setBtn,shareBtn,shopBtn,soundBtn,starImg,startBtn,switchBar,switchOff,switchOn,tipsBg,titleBg"
+		},
+		{
+			"name": "jsontpl_json",
+			"type": "json",
+			"url": "jsontpl/jsontpl.json"
 		}
 	]
 }

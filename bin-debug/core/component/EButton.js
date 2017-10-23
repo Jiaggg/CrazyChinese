@@ -121,8 +121,8 @@ var EButton = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    EButton.prototype.initText = function (wold) {
-        if (wold != "") {
+    EButton.prototype.initText = function (word) {
+        if (word != "") {
             if (this.textField == null) {
                 this.textField = new ETextField();
                 this.textField.size = this.fontSize;
@@ -132,7 +132,7 @@ var EButton = (function (_super) {
                 this.textField.width = this.btnImg.width;
                 this.addChild(this.textField);
             }
-            this.textField.text = wold;
+            this.textField.text = word;
             this.textField.x = this.btnImg.width / 2 - this.textField.width / 2;
             this.textField.y = this.btnImg.height / 2 - this.textField.height / 2;
         }

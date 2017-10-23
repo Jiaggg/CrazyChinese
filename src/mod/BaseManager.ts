@@ -1,0 +1,6 @@
+class BaseManager {
+
+	public constructor() {
+	
+	}
+}

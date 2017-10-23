@@ -22,6 +22,9 @@ var Main = (function (_super) {
     Main.prototype.dispose = function () {
         // if(this.loadingPanel != null)
     };
+    Main.prototype.initData = function () {
+        DataTemplateManager.getInstance();
+    };
     Main.prototype.onAddToStage = function (event) {
         // egret.Injector.mapClass(RES.AnalyzerBase, RES.PropertiesAnalyzer, RES.PropertiesAnalyzer.TYPE);
         //inject the custom material parser
@@ -59,6 +62,7 @@ var Main = (function (_super) {
     };
     Main.prototype.createGameScene = function () {
         PanelManager.initPanel();
+        this.initData();
         if (this.startPanel == null) {
             this.startPanel = new StartPanel();
         }

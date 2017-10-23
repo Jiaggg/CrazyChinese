@@ -1,0 +1,15 @@
+{
+	"word_base_data":
+		[
+			{"wordID":1,"wordSpell":"1","wordName":"111","desc":"11","nearlywords":["x","x1","x2","x3","x4"]},
+			{"wordID":2,"wordSpell":"2","wordName":"222","desc":"22","nearlywords":["x","x1","x2","x3","x4"]},
+			{"wordID":3,"wordSpell":"3","wordName":"333","desc":"33","nearlywords":["x","x1","x2","x3","x4"]}
+		],
+	"word_lev_data":
+		[
+			{"lev":1, "wordID":1, "rightNum":4, "gridNum":36, "rows":6, "columns":6, "addTime":1},
+			{"lev":2, "wordID":2, "rightNum":4, "gridNum":36, "rows":6, "columns":6, "addTime":1},
+			{"lev":3, "wordID":3, "rightNum":4, "gridNum":36, "rows":6, "columns":6, "addTime":1},
+			{"lev":4, "wordID":3, "rightNum":4, "gridNum":36, "rows":6, "columns":6, "addTime":1}
+		]
+}

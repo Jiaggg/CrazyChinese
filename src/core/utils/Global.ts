@@ -136,4 +136,47 @@ module Global {
 			this._share = null;
 		}	    	
 	}
+
+export function GetRandomNum(Min, Max):number {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        return (Min + Math.round(Rand * Range));
+    }
+/**
+ * 数组随机抽取其中的单元，返回抽取的列表
+ * 
+ */
+	export function getRandomArray(rdNum:number, list:Array<any>):Array<number>
+	{
+		let newList:Array<any> = list.concat();
+		let retList:Array<number> = new Array<number>();
+		if(rdNum > 0 && list.length > rdNum)
+		{
+			let rdItem:any;
+			for(var i = 0; i < rdNum; i++)
+			{
+				let index:number = Math.floor(Math.random() * newList.length);
+				rdItem = newList.splice(index, 1);  
+				retList.push(index);
+			}
+		}
+		return retList;
+	}
+
+	export function getRandomCount(count:number, min:number, max:number):Array<number>
+	{
+		let retList:Array<number> = new Array<number>();
+		let ranNum:number = Global.GetRandomNum(min,max);
+		retList.push(ranNum);
+		count --;
+		if(count <= 0)
+		{
+			return  retList;
+		}
+		let offNum = Math.round((count-1)/2);
+		retList = retList.concat(Global.getRandomCount(offNum, ranNum + 1, max));
+		retList = retList.concat(Global.getRandomCount(count - offNum - 1, min, ranNum - 1));
+	}
+
+
 }

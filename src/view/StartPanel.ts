@@ -25,7 +25,6 @@ class StartPanel extends BasePanel{
     // private inputTF:egret.TextField;
     // 初始化面板
     public initPanel():void{
-
         this.panelData.closeType = UIEnum.CloseType.ignort;
         let BtnX:number = 80;
         let BtnOffY:number = 300;
