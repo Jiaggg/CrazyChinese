@@ -116,7 +116,7 @@ var TypeQuietPanel = (function (_super) {
                 var item = new WordItem(this, this.onwordItemClick, index, "cell_bg", "cell_bg", false, 0);
                 item.x = 60 + (item.width + 5) * i;
                 item.y = 400 + (item.height + 5) * j;
-                item.word = randomWords[index];
+                item.word = randomWords[index].word;
                 this.addChild(item);
                 this.wordItems[index] = item;
                 index++;
@@ -124,7 +124,8 @@ var TypeQuietPanel = (function (_super) {
         }
     };
     TypeQuietPanel.prototype.onBtnBackTouchTap = function (e) {
-        this.closePanel();
+        TypeQuietManager.getInstance().setCurLev(1);
+        // this.closePanel();
     };
     TypeQuietPanel.prototype.onwordItemClick = function (index) {
         var item = this.wordItems[index];

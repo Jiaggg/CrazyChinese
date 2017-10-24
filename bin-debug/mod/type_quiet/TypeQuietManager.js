@@ -56,14 +56,22 @@ var TypeQuietManager = (function (_super) {
         var nearlyLen = nearlywords.length;
         // 随机形近字
         for (var i = 0; i < totalNum; i++) {
-            var index = Global.GetRandomNum(0, nearlyLen - 1);
-            this._randomWords[i] = nearlywords[index];
+            var index = Global.GetRandom(0, nearlyLen - 1);
+            var rdData = new RandomWordData();
+            rdData.index = index;
+            rdData.word = nearlywords[index];
+            this._randomWords[i] = rdData;
         }
+        this._rightwords = [];
         // 随机正确的位置，修改
-        this._rightwords = Global.getRandomCount(rightNum, 1, this._randomWords.length);
+        Global.getRandomArray(this._randomWords, rightNum, this._rightwords);
         for (var i = 0; i < this._rightwords.length; i++) {
-            this._randomWords[i] = this._curName;
+            this._rightwords[i].word = this._curName;
         }
+        this._randomWords = this._randomWords.concat(this._rightwords);
+        this._randomWords = this._randomWords.sort(function (left, right) {
+            return left.index > right.index ? -1 : 1;
+        });
     };
     Object.defineProperty(TypeQuietManager.prototype, "randomWords", {
         get: function () {
@@ -87,7 +95,7 @@ var TypeQuietManager = (function (_super) {
         configurable: true
     });
     TypeQuietManager.prototype.checkIsRight = function (index) {
-        return this._randomWords[index] == this._curName;
+        return this._rightwords[index] != null;
     };
     TypeQuietManager._instance = null;
     return TypeQuietManager;

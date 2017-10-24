@@ -137,36 +137,35 @@ module Global {
 		}	    	
 	}
 
-export function GetRandomNum(Min, Max):number {
-        var Range = Max - Min;
+export function GetRandom(min:number, max:number):number {
+        var Range = max - min;
         var Rand = Math.random();
-        return (Min + Math.round(Rand * Range));
+        return (min + Math.round(Rand * Range));
     }
 /**
  * 数组随机抽取其中的单元，返回抽取的列表
  * 
  */
-	export function getRandomArray(rdNum:number, list:Array<any>):Array<number>
+	export function getRandomArray(list:Array<any>, rdNum:number, retList:Array<any>):Array<any>
 	{
-		let newList:Array<any> = list.concat();
-		let retList:Array<number> = new Array<number>();
-		if(rdNum > 0 && list.length > rdNum)
+		if(list!=null && list.length == 0)
 		{
-			let rdItem:any;
-			for(var i = 0; i < rdNum; i++)
-			{
-				let index:number = Math.floor(Math.random() * newList.length);
-				rdItem = newList.splice(index, 1);  
-				retList.push(index);
-			}
+			return retList;
 		}
-		return retList;
+		if(rdNum <= 0)
+		{
+			return retList;
+		}
+		let rdIndex:number = Global.GetRandom(0, list.length - 1);
+		retList.push(list[rdIndex]);
+		list.splice(rdIndex, 1); 
+		Global.getRandomArray(list, rdNum - 1, retList);
 	}
 
 	export function getRandomCount(count:number, min:number, max:number):Array<number>
 	{
 		let retList:Array<number> = new Array<number>();
-		let ranNum:number = Global.GetRandomNum(min,max);
+		let ranNum:number = Global.GetRandom(min,max);
 		retList.push(ranNum);
 		count --;
 		if(count <= 0)

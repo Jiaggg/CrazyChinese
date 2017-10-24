@@ -10,9 +10,9 @@
 	],
 	"game": [
 		"bin-debug/core/component/EButton.js",
+		"bin-debug/mod/panel/BasePanel.js",
 		"bin-debug/core/component/ESprite.js",
 		"bin-debug/mod/BaseManager.js",
-		"bin-debug/mod/panel/BasePanel.js",
 		"bin-debug/core/utils/md5.js",
 		"bin-debug/core/component/AlertPanel.js",
 		"bin-debug/core/component/EBitmap.js",
@@ -46,6 +46,7 @@
 		"bin-debug/core/views/GameScene.js",
 		"bin-debug/componentExt/ShareIconPanel.js",
 		"bin-debug/mod/DataTmp/DataTemplateManager.js",
+		"bin-debug/mod/DataTmp/RandomWordData.js",
 		"bin-debug/mod/DataTmp/WoldBaseData.js",
 		"bin-debug/mod/DataTmp/WordLevData.js",
 		"bin-debug/componentExt/WaitPanel.js",

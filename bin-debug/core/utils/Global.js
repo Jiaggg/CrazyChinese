@@ -150,33 +150,32 @@ var Global;
         }
     }
     Global.closeSharePanel = closeSharePanel;
-    function GetRandomNum(Min, Max) {
-        var Range = Max - Min;
+    function GetRandom(min, max) {
+        var Range = max - min;
         var Rand = Math.random();
-        return (Min + Math.round(Rand * Range));
+        return (min + Math.round(Rand * Range));
     }
-    Global.GetRandomNum = GetRandomNum;
+    Global.GetRandom = GetRandom;
     /**
      * 数组随机抽取其中的单元，返回抽取的列表
      *
      */
-    function getRandomArray(rdNum, list) {
-        var newList = list.concat();
-        var retList = new Array();
-        if (rdNum > 0 && list.length > rdNum) {
-            var rdItem = void 0;
-            for (var i = 0; i < rdNum; i++) {
-                var index = Math.floor(Math.random() * newList.length);
-                rdItem = newList.splice(index, 1);
-                retList.push(index);
-            }
+    function getRandomArray(list, rdNum, retList) {
+        if (list != null && list.length == 0) {
+            return retList;
         }
-        return retList;
+        if (rdNum <= 0) {
+            return retList;
+        }
+        var rdIndex = Global.GetRandom(0, list.length - 1);
+        retList.push(list[rdIndex]);
+        list.splice(rdIndex, 1);
+        Global.getRandomArray(list, rdNum - 1, retList);
     }
     Global.getRandomArray = getRandomArray;
     function getRandomCount(count, min, max) {
         var retList = new Array();
-        var ranNum = Global.GetRandomNum(min, max);
+        var ranNum = Global.GetRandom(min, max);
         retList.push(ranNum);
         count--;
         if (count <= 0) {

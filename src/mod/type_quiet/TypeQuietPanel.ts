@@ -108,7 +108,7 @@ class TypeQuietPanel extends BasePanel{
             ObjectUtils.delObj(item);
         }
         TypeQuietManager.getInstance().setCurLev(1);
-        let randomWords:Array<string> = TypeQuietManager.getInstance().randomWords;
+        let randomWords:Array<RandomWordData> = TypeQuietManager.getInstance().randomWords;
         let rows:number = TypeQuietManager.getInstance().wordLevData.rows;
         let columns:number = TypeQuietManager.getInstance().wordLevData.columns;
         let index:number = 0;
@@ -119,7 +119,7 @@ class TypeQuietPanel extends BasePanel{
                     let item = new WordItem(this, this.onwordItemClick, index, "cell_bg","cell_bg", false, 0);
                     item.x = 60 + (item.width + 5) * i;
                     item.y = 400 + (item.height + 5) * j;
-                    item.word = randomWords[index];
+                    item.word = randomWords[index].word;
                     this.addChild(item);
                     this.wordItems[index] = item;
                     index ++ ;
@@ -128,7 +128,8 @@ class TypeQuietPanel extends BasePanel{
     }
     public onBtnBackTouchTap(e:egret.TouchEvent):void
     {
-        this.closePanel();
+         TypeQuietManager.getInstance().setCurLev(1);
+        // this.closePanel();
     }
 
     public onwordItemClick(index:number):void

@@ -2,8 +2,8 @@ class TypeQuietManager extends BaseManager
 {
 	private _wordLevData:WordLevData = null;
 	private _wordBaseData:WordBaseData = null;
-	private _rightwords:Array<number> = null;
-	private _randomWords:Array<string> = null;
+	private _rightwords:Array<RandomWordData> = null;
+	private _randomWords:Array<RandomWordData> = null;
 	private _curLev:number = 0
 	private _curWordID:number = 0;
 	private _curName:string = "";
@@ -11,7 +11,7 @@ class TypeQuietManager extends BaseManager
 	public constructor() 
 	{
 		super();
-		this._rightwords = new Array<number>();
+		this._rightwords = new Array<RandomWordData>();
 		this.setCurLev(0);
 	}
 
@@ -43,7 +43,7 @@ class TypeQuietManager extends BaseManager
 
 	public InitRandoWords():void
 	{
-		this._randomWords = new Array<string>();
+		this._randomWords = new Array<RandomWordData>();
 		let  nearlywords:Array<string> = this._wordBaseData.nearlywords;
 		let totalNum = this._wordLevData.gridNum;
 		let rightNum = this._wordLevData.rightNum;
@@ -51,18 +51,28 @@ class TypeQuietManager extends BaseManager
 		// 随机形近字
 		for (var i = 0; i < totalNum; i ++) 
 		{
-			let index = Global.GetRandomNum(0, nearlyLen - 1);
-			this._randomWords[i] = nearlywords[index];
+			let index = Global.GetRandom(0, nearlyLen - 1);
+			let rdData:RandomWordData = new RandomWordData();
+			rdData.index = index;
+			rdData.word = nearlywords[index];
+			this._randomWords[i] = rdData;
 		}
+		this._rightwords = [];
 		// 随机正确的位置，修改
-		this._rightwords = Global.getRandomCount(rightNum, 1, this._randomWords.length);
+		Global.getRandomArray(this._randomWords, rightNum, this._rightwords);
 		for (var i = 0; i < this._rightwords.length; i ++) 
 		{
-			this._randomWords[i] = this._curName;
+			this._rightwords[i].word = this._curName;
 		}
+		this._randomWords = this._randomWords.concat(this._rightwords);
+		this._randomWords = this._randomWords.sort(
+			function(left, right)
+			{
+				return left.index > right.index ? -1:1
+			});
 	}
 
-	get randomWords():Array<string>
+	get randomWords():Array<RandomWordData>
 	{
 		return this._randomWords;
 	}
@@ -78,6 +88,6 @@ class TypeQuietManager extends BaseManager
 
 	public checkIsRight(index:number):boolean
 	{
-		return this._randomWords[index] == this._curName;
+		return this._rightwords[index] as RandomWordData != null;
 	}
 }
