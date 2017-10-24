@@ -10,8 +10,6 @@ var PanelManager;
     PanelManager.panelList = [];
     var curPanelID = 0;
     var startPanel;
-    var gamePanel;
-    var gameOverPanel;
     // 初始化所有面板
     function initPanel() {
         var _width = document.documentElement.clientWidth;
@@ -19,18 +17,6 @@ var PanelManager;
         if (_width < _height) {
             GlobalData.initIsVertical = true;
         }
-        // Global.addEventListener(MainNotify.openStartPanelNotify,this.openStartPanel,this)
-        // Global.addEventListener(MainNotify.closeStartPanelNotify,this.closeStartPanel,this)
-        // Global.addEventListener(MainNotify.openGamePanelNotify,this.openGamePanel,this)
-        // Global.addEventListener(MainNotify.closeGamePanelNotify,this.closeGamePanel,this)
-        // Global.addEventListener(MainNotify.openGameOverPanelNotify,this.openGameOverPanel,this)
-        // Global.addEventListener(MainNotify.closeGameOverPanelNotify,this.closeGameOverPanel,this)
-        // Global.addEventListener(MainNotify.openGameType1PanelNotify,this.openGameType1Panel,this);
-        // Global.addEventListener(MainNotify.closeGameType1PanelNotify,this.closeGameType1Panel,this);
-        // Global.addEventListener(MainNotify.openGameType2PanelNotify,this.openGameType2Panel,this);
-        // Global.addEventListener(MainNotify.closeGameType2PanelNotify,this.closeGameType2Panel,this);
-        // Global.addEventListener(MainNotify.openGameType3PanelNotify,this.openGameType3Panel,this);
-        // Global.addEventListener(MainNotify.closeGameType3PanelNotify,this.closeGameType3Panel,this);
     }
     PanelManager.initPanel = initPanel;
     function addPanel(panel) {
@@ -105,30 +91,12 @@ var PanelManager;
         }
     }
     PanelManager.closePanelByID = closePanelByID;
-    // // 打开模式1界面
-    // export function openGameType1Panel():void{ 
-    // 	if(this.gameType1 == null){
-    // 		this.gameType1 = new GameType1Panel();
-    // 	}
-    // 	addPanel(this.gameType1);
-    // 	// PopUpManager.addPopUp(this.gameType1,false,0,0,4);
-    // 	// this.gameType1.updateData();
-    // } 
-    // // 关闭模式1界面
-    // export function closeGameType1Panel():void{ 
-    // 	if(this.gameType1 != null){
-    // 		PanelManager.closePanel(this.gameType1);
-    // 		this.gameType1 = null;
-    // 	}
-    // } 
     // 打开开始界面
     function openStartPanel() {
         if (this.startPanel == null) {
             this.startPanel = new StartPanel();
         }
         PanelManager.addPanel(this.startPanel);
-        // this.startPanel.updateData();
-        // PopUpManager.addPopUp(this.startPanel,false,0,0,0);
     }
     PanelManager.openStartPanel = openStartPanel;
     // 关闭开始界面
@@ -139,37 +107,5 @@ var PanelManager;
         }
     }
     PanelManager.closeStartPanel = closeStartPanel;
-    // 打开游戏界面
-    function openGamePanel() {
-        if (this.gamePanel == null) {
-            this.gamePanel = new GamePanel();
-            PopUpManager.addPopUp(this.gamePanel, false, 0, 0, 3);
-        }
-    }
-    PanelManager.openGamePanel = openGamePanel;
-    // 关闭游戏界面
-    function closeGamePanel() {
-        if (this.gamePanel != null) {
-            PopUpManager.removePopUp(this.gamePanel, 3);
-            this.gamePanel = null;
-        }
-    }
-    PanelManager.closeGamePanel = closeGamePanel;
-    // 打开结束界面
-    function openGameOverPanel() {
-        if (this.gameOverPanel == null) {
-            this.gameOverPanel = new GameOverPanel();
-            PopUpManager.addPopUp(this.gameOverPanel, false, 0, 0, 3);
-        }
-    }
-    PanelManager.openGameOverPanel = openGameOverPanel;
-    // 关闭结束界面
-    function closeGameOverPanel() {
-        if (this.gameOverPanel != null) {
-            PopUpManager.removePopUp(this.gameOverPanel, 3);
-            this.gameOverPanel = null;
-        }
-    }
-    PanelManager.closeGameOverPanel = closeGameOverPanel;
 })(PanelManager || (PanelManager = {}));
 //# sourceMappingURL=PanelManager.js.map

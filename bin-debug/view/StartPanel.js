@@ -30,21 +30,31 @@ var StartPanel = (function (_super) {
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);
         this.bg.touchEnabled = false;
-        this.btnType1 = new EButton(this, "btn_type", this.onBtnBack, "btnType1", "静", 80, 2);
+        this.btnType1 = new EButton();
         this.btnType1.x = BtnX;
         this.btnType1.y = BtnOffY;
+        this.btnType1.width = 100;
+        this.btnType1.height = 40;
+        this.btnType1.label = "静";
         this.addChild(this.btnType1);
-        // this.btnType1.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onBtnTypeTouchTap,this); 
-        this.btnType2 = new EButton(this, "btn_type", this.onBtnBack, "btnType2", "心", 80, 2);
+        this.btnType1.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnTypeTouchTap, this);
+        this.btnType2 = new EButton();
         this.btnType2.x = BtnX;
         this.btnType2.y = BtnOffY + 220;
-        +this.addChild(this.btnType2);
-        // this.btnType2.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onBtnTypeTouchTap,this); 
-        this.btnType3 = new EButton(this, "btn_type", this.onBtnBack, "btnType3", "禅", 80, 2);
+        this.btnType2.width = 100;
+        this.btnType2.height = 40;
+        this.addChild(this.btnType2);
+        this.btnType2.label = "心";
+        this.btnType2.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnTypeTouchTap, this);
+        this.btnType3 = new EButton();
+        this.btnType3.icon = this.assets.getTexture("btn_type");
         this.btnType3.x = BtnX;
         this.btnType3.y = BtnOffY + 440;
+        this.btnType3.width = 100;
+        this.btnType3.height = 40;
+        this.btnType2.label = "禅";
         this.addChild(this.btnType3);
-        // this.btnType3.addEventListener(egret.TouchEvent.TOUCH_TAP,this.onBtnTypeTouchTap,this); 
+        this.btnType3.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onBtnTypeTouchTap, this);
         // this.logoImg = new egret.Bitmap();
         // this.logoImg.texture = this.assets.getTexture("logoImg");
         // this.logoImg.anchorOffsetX = this.logoImg.width/2;
@@ -132,29 +142,15 @@ var StartPanel = (function (_super) {
         Global.dispatchEvent(MainNotify.openGamePanelNotify, null, false);
         Global.dispatchEvent(MainNotify.closeStartPanelNotify, null, false);
     };
-    StartPanel.prototype.onBtnBack = function (data) {
-        switch (data.toString()) {
-            case "btnType1":
-                this.curPanel = new TypeQuietPanel();
-                break;
-            case "btnType2":
-                this.curPanel = new TypeQuietPanel();
-                break;
-            case "btnType3":
-                this.curPanel = new TypeQuietPanel();
-                break;
-            default:
-                this.curPanel = new TypeQuietPanel();
-                break;
-        }
-        PanelManager.addPanel(this.curPanel);
+    StartPanel.prototype.onBtnTypeTouchTap = function (e) {
+        // EffectUtils.rotationEffect(this.helpBtn,1000);
     };
     StartPanel.prototype.onHelpTouchTap = function (e) {
         // EffectUtils.rotationEffect(this.helpBtn,1000);
     };
     StartPanel.prototype.onShopTouchTap = function (e) {
         // EffectUtils.removeRotationEffect(this.helpBtn);
-        Global.share();
+        // Global.share();
     };
     StartPanel.prototype.onFbTouchTap = function (e) {
         EffectUtils.shakeObj(this.fbBtn);

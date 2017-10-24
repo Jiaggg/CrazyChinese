@@ -87,14 +87,14 @@ var AlertPanel = (function (_super) {
             }
             Global.dispatchEvent(MainNotify.closeAlertNotify);
         };
-        this.acceptBtn = new EButton(this, "acceptBtn", onAcceptBtnTouchTap);
+        this.acceptBtn = new EButton();
         this.addChild(this.acceptBtn);
         if (this.type == 1) {
             this.acceptBtn.x = this.bg.width / 2 - this.acceptBtn.width / 2;
             this.acceptBtn.y = this.bg.height - this.acceptBtn.height / 2 - 10;
         }
         else {
-            this.cancelBtn = new EButton(this, "cancelBtn", onCancelBtnTouchTap);
+            this.cancelBtn = new EButton();
             this.cancelBtn.x = 60 + 50;
             this.cancelBtn.y = this.bg.height - this.cancelBtn.height / 2 - 10;
             this.addChild(this.cancelBtn);

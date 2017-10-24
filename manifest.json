@@ -9,10 +9,10 @@
 		"libs/modules/socket/socket.js"
 	],
 	"game": [
-		"bin-debug/core/component/EButton.js",
-		"bin-debug/mod/panel/BasePanel.js",
 		"bin-debug/core/component/ESprite.js",
 		"bin-debug/mod/BaseManager.js",
+		"bin-debug/mod/panel/BasePanel.js",
+		"bin-debug/core/utils/EffectUtils.js",
 		"bin-debug/core/utils/md5.js",
 		"bin-debug/core/component/AlertPanel.js",
 		"bin-debug/core/component/EBitmap.js",
@@ -23,7 +23,6 @@
 		"bin-debug/core/component/ETextField.js",
 		"bin-debug/core/component/EToggleButton.js",
 		"bin-debug/core/component/EToggleSwitch.js",
-		"bin-debug/core/component/ShareIconRender.js",
 		"bin-debug/core/component/TipsManager.js",
 		"bin-debug/core/component/TipsPanel.js",
 		"bin-debug/core/config/GameConfig.js",
@@ -32,7 +31,7 @@
 		"bin-debug/core/net/Network.js",
 		"bin-debug/core/net/SocketManager.js",
 		"bin-debug/core/notification/MainNotify.js",
-		"bin-debug/core/utils/EffectUtils.js",
+		"bin-debug/core/component/EButton.js",
 		"bin-debug/core/utils/Global.js",
 		"bin-debug/view/StartPanel.js",
 		"bin-debug/core/utils/NativeApi.js",
@@ -44,7 +43,6 @@
 		"bin-debug/core/utils/UtilsClass/ObjectUtils.js",
 		"bin-debug/core/utils/UtilsClass/TipsUtils.js",
 		"bin-debug/core/views/GameScene.js",
-		"bin-debug/componentExt/ShareIconPanel.js",
 		"bin-debug/mod/DataTmp/DataTemplateManager.js",
 		"bin-debug/mod/DataTmp/RandomWordData.js",
 		"bin-debug/mod/DataTmp/WoldBaseData.js",
@@ -54,10 +52,6 @@
 		"bin-debug/mod/panel/PanelManager.js",
 		"bin-debug/mod/panel/PopUpManager.js",
 		"bin-debug/mod/type_quiet/TypeQuietManager.js",
-		"bin-debug/mod/type_quiet/TypeQuietPanel.js",
-		"bin-debug/mod/type_quiet/WordItem.js",
-		"bin-debug/view/GameOverPanel.js",
-		"bin-debug/view/GamePanel.js",
 		"bin-debug/view/SharePanel.js",
 		"bin-debug/Main.js"
 	]
